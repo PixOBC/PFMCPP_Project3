@@ -5,14 +5,14 @@ User-Defined Types
 
 Continue your work on branch Part1
 
-Purpose: The entire purpose of this 5-part project is to get you writing C++ code that compiles and to 
-reinforce the syntax habits that C++ requires.  
-What you create in this project will be used as the basis of Project 5 in the course.   
+Purpose: The entire purpose of this 5-part project is to get you writing C++ code that compiles and to
+reinforce the syntax habits that C++ requires.
+What you create in this project will be used as the basis of Project 5 in the course.
 
 ************************
 Part1 purpose:  Learn to write UDTs
 
-You are going to write 10 UDTs in project3.  
+You are going to write 10 UDTs in project3.
 Part1 will be broken up into 5 separate steps
     Part 1a: you will learn to think about an object in terms of its sub-objects.
     Part 1b: you will write 4 un-related UDTs in plain english
@@ -28,9 +28,9 @@ Part1 will be broken up into 5 separate steps
 */
 
 /*
- example:  
- 
-Thing: Car Wash   
+ example:
+
+Thing: Car Wash
     5 properties:
         - number of vacuum cleaners
         - number of eco-friendly cleaning supplies
@@ -43,70 +43,70 @@ Thing: Car Wash
         - detail the car interior
 
     Notice that I did not use "has a vacuum cleaner" or "Has eco-friendly cleaning supplies" as one of the properties
-    
+
     Writing 'has a ___" checks whether or not your object **has the ability to do something**.
-    Instead, I wrote "number of vacuum cleaners" and "number of eco-friendly cleaning supplies".  
-    
-    These are specific objects or amounts. 
-    
+    Instead, I wrote "number of vacuum cleaners" and "number of eco-friendly cleaning supplies".
+
+    These are specific objects or amounts.
+
     In C++ terms, this means to I want you to avoid using 'bool' (has a) as a member variable type.
     Instead, prefer the other primitive types.
  */
 
 /*
-Thing 1)
+Thing 1) Dragon
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) family origin
+    2) fire power
+    3) number of knights defeated in lifetime
+    4) birthplace
+    5) age
 3 things it can do:
-    1)
-    2)
-    3)
+    1) capture princesses
+    2) breath fire
+    3) fight knights
  */
 
 /*
-Thing 2)
+Thing 2) High rise
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of lifts
+    2) number of floors
+    3) number of rooms
+    4) hours per week cleaned
+    5) cost of property
 3 things it can do:
-    1)
-    2)
-    3)
+    1) house residents
+    2) charge residents
+    3) transport residents between floors
  */
 
 /*
-Thing 3)
+Thing 3) Brain
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of neurones
+    2) number of functioning hemispheres
+    3) memory storage in bytes
+    4) calculations per second
+    5) unknown regions
 3 things it can do:
-    1)
-    2)
-    3)
+    1) recognise faces
+    2) estimate distances
+    3) construct a language
  */
 
 /*
-Thing 4)
+Thing 4) chord
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of notes
+    2) possible next chords within key
+    3) chord number in roman numerals
+    4) has chord been altered
+    5) possible preceding chords within key
 3 things it can do:
-    1)
-    2)
-    3)
+    1) make a sound
+    2) be played as arpeggio
+    3) be omitted
  */
 
 
@@ -115,8 +115,8 @@ Thing 4)
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
  Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
- 
- If you didn't already: 
+
+ If you didn't already:
     Make a pull request after you make your first commit
     pin the pull request link and this repl.it link to our DM thread in a single message.
 
