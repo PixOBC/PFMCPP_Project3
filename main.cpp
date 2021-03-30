@@ -144,7 +144,7 @@ Thing 6) Oscillator
     1) pitch value of oscillator
     2) octave setting of oscillator (int 'foot' selection of LFO, 32, 16, 8, 4, 2)
     3) oscillator volume level
-    4) is oscillator controlled by pitch via keys
+    4) oscillator pitch source
     5) waveform of oscillator
 3 things it can do:
     1) make a sound
