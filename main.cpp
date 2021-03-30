@@ -143,7 +143,7 @@ Thing 6) Oscillator
 5 properties:
     1) pitch value of oscillator
     2) octave setting of oscillator (int 'foot' selection of LFO, 32, 16, 8, 4, 2)
-    3) is oscillator on
+    3) volume of oscillator
     4) is oscillator controlled by pitch via keys
     5) waveform of oscillator
 3 things it can do:
@@ -185,7 +185,7 @@ Thing 9) Arpeggiator
 5 properties:
     1) Octave range value
     2) Number of note repetitions before moving to next note
-    3) is on
+    3) sequence pattern number
     4) note playing direction
     5) reset filter with each note (bool)
 3 things it can do:
