@@ -5,14 +5,14 @@ User-Defined Types
 
 Continue your work on branch Part1
 
-Purpose: The entire purpose of this 5-part project is to get you writing C++ code that compiles and to 
-reinforce the syntax habits that C++ requires.  
-What you create in this project will be used as the basis of Project 5 in the course.   
+Purpose: The entire purpose of this 5-part project is to get you writing C++ code that compiles and to
+reinforce the syntax habits that C++ requires.
+What you create in this project will be used as the basis of Project 5 in the course.
 
 ************************
 Part1 purpose:  Learn to write UDTs
 
-You are going to write 10 UDTs in project3.  
+You are going to write 10 UDTs in project3.
 Part1 will be broken up into 5 separate steps
     Part 1a: you will learn to think about an object in terms of its sub-objects.
     Part 1b: you will write 4 un-related UDTs in plain english
@@ -24,7 +24,7 @@ Part1 will be broken up into 5 separate steps
 1) write the 10th UDT
     come up with an object that is made of 5 smaller parts.
     These parts will not be defined using Primitives, but instead will be their own UDTs you'll define in Part 1d
-    
+
     Here is an example:
     Cell Phone
 
@@ -41,15 +41,15 @@ Part1 will be broken up into 5 separate steps
         run an application.
 
     Notice that I did not use "has a display" or "Has memory" or "has a cpu" as one of the properties of the CellPhone
-    
+
     Writing 'has a ___" checks whether or not your object **has the ability to do something**.
-    Instead, I wrote "Display" or "CPU".  These are specific objects or amounts. 
-    
+    Instead, I wrote "Display" or "CPU".  These are specific objects or amounts.
+
     In C++ terms, this means to I want you to avoid using 'bool' (has a) as a member variable type.
     Instead, prefer the other primitive types.
 
-    When you choose your 5 smaller parts, remember that each of these 5 Sub Objects will need 
-    to be defined with 5 primitive properties and 3 actions EACH.  
+    When you choose your 5 smaller parts, remember that each of these 5 Sub Objects will need
+    to be defined with 5 primitive properties and 3 actions EACH.
 */
 
 
@@ -114,17 +114,17 @@ Thing 4) chord
  */
 
 /*
-Thing 10)
+Thing 10) Synthesiser
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Keys
+    2) Oscillator
+    3) Filter
+    4) Amplitude envelope
+    5) Arpeggiator
 3 things it can do:
-    1)
-    2)
-    3)
+    1) play a note
+    2) play repeating notes
+    3) filter the sound
  */
 
 /*
