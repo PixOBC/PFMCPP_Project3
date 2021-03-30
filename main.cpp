@@ -5,15 +5,15 @@ User-Defined Types
 
 Continue your work on branch Part1
 
-Purpose: The entire purpose of this 5-part project is to get you writing C++ code that compiles and to 
-reinforce the syntax habits that C++ requires.  
-What you create in this project will be used as the basis of Project 5 in the course.   
+Purpose: The entire purpose of this 5-part project is to get you writing C++ code that compiles and to
+reinforce the syntax habits that C++ requires.
+What you create in this project will be used as the basis of Project 5 in the course.
 
 ************************
 Part1 purpose:  Learn to write UDTs
 
-You are going to write 10 UDTs in project3. 
-Part1 will be broken up into 5 separate steps 
+You are going to write 10 UDTs in project3.
+Part1 will be broken up into 5 separate steps
     Part 1a: you will learn to think about an object in terms of its sub-objects.
     Part 1b: you will write 4 un-related UDTs in plain english
     Part 1c: you will write 1 UDT in plain english that will be made of 5 related sub-objects
@@ -21,8 +21,8 @@ Part1 will be broken up into 5 separate steps
     Part 1e: you will convert those 10 plain-english UDTs into code that runs.
 ************************
 
-    The goal of this step is to get you to think about breaking down an object into smaller and smaller objects, 
-    until the smallest object is made of up only C++ primitives. 
+    The goal of this step is to get you to think about breaking down an object into smaller and smaller objects,
+    until the smallest object is made of up only C++ primitives.
 
     Continuing the previous example:  Cell Phone
 
@@ -37,7 +37,7 @@ Part1 will be broken up into 5 separate steps
         send a text
         run an application.
 
-    These 5 properties can be broken down into their own sub-objects and properties. 
+    These 5 properties can be broken down into their own sub-objects and properties.
 
     If we break down the first property 'Display' into its 5 properties we get:
         brightness
@@ -46,10 +46,10 @@ Part1 will be broken up into 5 separate steps
         width in cm
         height in cm
 
-    the Display's brightness can be represented with a Primitive, such as a double. 
+    the Display's brightness can be represented with a Primitive, such as a double.
 
     The amount of power consumed can also be represented with a Primitive, such as a float or integer (i.e. 250mWa)
-    
+
     The 'pixels' property must be represented with an array of Pixel instances, as the screen has more than 1 row of pixels.
         Arrays have not been discussed and can't be used in this project.
         Instead, we can use an Integer primitive to store the Number of Pixels:
@@ -63,8 +63,8 @@ Part1 will be broken up into 5 separate steps
 ************************
 
 1) Fill in #5 - #9 with plain-english UDTs for the 5 properties you created for UDT #10
-    example: 
-        If #10's first property was 'Engine', then your `Thing 5)` will be `Engine` and 
+    example:
+        If #10's first property was 'Engine', then your `Thing 5)` will be `Engine` and
         you will need to provide 5 properties and 3 member functions of that Engine object in plain English
 */
 
@@ -125,73 +125,73 @@ Thing 4) chord
  */
 
 /*
-Thing 5)
+Thing 5) Keys
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) is key depressed
+    2) velocity of key pressed (1-127)
+    3) MIDI number of note pressed (1-127)
+    4) Is note legato (note held, while another is played)
+    5) Is keyboard set to monophonic
 3 things it can do:
-    1)
-    2)
-    3)
+    1) play legato
+    2) play chords
+    3) play monophonic
  */
 
 /*
-Thing 6)
+Thing 6) Oscillator
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) pitch value of oscillator
+    2) octave setting of oscillator (int 'foot' selection of LFO, 32, 16, 8, 4, 2)
+    3) is oscillator on
+    4) is oscillator controlled by pitch via keys
+    5) waveform of oscillator
 3 things it can do:
-    1)
-    2)
-    3)
+    1) make a sound
+    2) be an LFO
+    3) be a square wave
  */
 
 /*
-Thing 7)
+Thing 7) Filter
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Cutoff frequency
+    2) Resonance
+    3) Attack value
+    4) Decay value
+    5) Release value
 3 things it can do:
-    1)
-    2)
-    3)
+    1) change oscillator cutoff
+    2) change oscillator resonance
+    3) receive host automation
  */
 
 /*
-Thing 8)
+Thing 8) Amplitude Envelope
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Attack value
+    2) Decay value
+    3) Sustain value
+    4) Release value
+    5) Envelope is on
 3 things it can do:
-    1)
-    2)
-    3)
+    1) adjust oscillator attack
+    2) receive host automation
+    3) be bypassed
  */
 
 /*
-Thing 9)
+Thing 9) Arpeggiator
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Octave range value
+    2) Number of note repetitions before moving to next note
+    3) is on
+    4) note playing direction
+    5) reset filter with each note (bool)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) be bypassed
+    2) play held notes
+    3) play a certain note duration
  */
 
 /*
