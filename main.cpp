@@ -127,11 +127,11 @@ Thing 4) chord
 /*
 Thing 5) Keys
 5 properties:
-    1) is key depressed
+    1) key depressed
     2) velocity of key pressed (1-127)
     3) MIDI number of note pressed (1-127)
-    4) Is note legato (note held, while another is played)
-    5) Is keyboard set to monophonic
+    4) note legato value (note held, while another is played)
+    5) keyboard set to monophonic
 3 things it can do:
     1) play legato
     2) play chords
@@ -173,7 +173,7 @@ Thing 8) Amplitude Envelope
     2) Decay value
     3) Sustain value
     4) Release value
-    5) Envelope is on
+    5) Hold value
 3 things it can do:
     1) adjust oscillator attack
     2) receive host automation
@@ -187,7 +187,7 @@ Thing 9) Arpeggiator
     2) Number of note repetitions before moving to next note
     3) sequence pattern number
     4) note playing direction
-    5) reset filter with each note (bool)
+    5) pitch duration selection
 3 things it can do:
     1) be bypassed
     2) play held notes
