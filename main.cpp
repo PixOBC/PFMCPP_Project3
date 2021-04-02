@@ -167,11 +167,26 @@ Thing 2) High rise
 struct HighRise
 {
     struct Lift
-    {
-        std::string manufacturer = "Cibes";
+    {          
+        // 5 properties
+//      1) manufacturer's name
+        std::string manufacturerName = "Cibes";
+//      2) lift speed
         float liftSpeedMph = 8.5f;
+//      3) floor number
         int floorNumber = 4;
+//      4) room number
         int roomNumber = 570;
+//      5) number of passengers
+        int numberPassengers = 5;
+
+        // 3 actions
+//    1) moves up
+        void moveLiftUp(Lift lift);
+//    2) moves down
+        void moveLiftDown(Lift lift);
+//    3) goes to penthouse suite
+        void goToPenthouse(std::string password);      
     };
 
 //    1) number of lifts
@@ -190,7 +205,7 @@ struct HighRise
 //    2) charge residents
     int invoiceResident(int invoiceAmount);
 //    3) transport residents between floors
-    void  transportResident(std::string residentName, Lift lift);
+    void transportResident(std::string residentName, Lift lift);
 };
 
 /*
@@ -211,7 +226,25 @@ struct Brain
 {
     struct Vision
     {
+        // 5 properties
+//      1) number of functioning eyes
         int numberOfFunctioningEyes = 2;
+//      2) vision quality
+        double visionQuality = 65.5;
+//      3) blinks per second
+        float blinksPerSecond = 10.0f;
+//      4) year of last eye test
+        std::string yearLastEyeTest = "1985";
+//      5) Peripheral vision in degrees
+        int peripheralVision = 165;
+
+        // 3 actions
+//    1) check vision
+        void checkVision(double visionQuality);
+//    2) find probability of seeing object
+        Vision probabilityOfSighting(Vision vision);
+//    3) get glasses prescription
+        Vision getGlasseesPrescription(Vision vision);        
     };
 
 //    1) number of neurons
@@ -287,6 +320,8 @@ Thing 5) Keys
 struct Keys
 {
 
+//    1) key depressed
+    bool keyDepressed = false;
 //    2) velocity of key pressed (1-127)
     int noteVelocity = 67;
 //    3) MIDI number of note pressed (1-127)
@@ -324,7 +359,6 @@ struct Oscillator
     int oscillatorPitch = 875;
 //    2) octave setting of oscillator (int 'foot' selection of LFO, 32, 16, 8, 4, 2)
     unsigned int oscillatorOctave = 16;
-
 //    3) oscillator volume level (dB)
     int oscillatorLevel = -6;
 //    4) oscillator pitch source
@@ -437,6 +471,7 @@ struct Arpeggiator
 //    4) note playing direction
     std::string arpDirection = "Up/Down";
 //    5) pitch duration selection
+    int pitchDuration = 16;
 
 
 //    1) be bypassed
