@@ -153,7 +153,7 @@ void Person::run(int howFast, bool startWithLeftFoot) // include howFast by crea
         rightFoot.stepForward();
         leftFoot.stepForward();
     }
-    distanceTravelled += leftFoot.stepSize(198) + rightFoot.stepSize(198);
+    distanceTravelled += (leftFoot.stepSize(198) + rightFoot.stepSize(198)) * howFast;
 }
 
 /*
