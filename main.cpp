@@ -457,7 +457,7 @@ void Oscillator::makeOscillatorAnLFO(int oscillatorFrequency)
 int Oscillator::makeOscillatorSquareWave(int oscillatorWave)
 {
     int squareWave = 2;
-    return oscillatorWave = squareWave;
+    return oscillatorWave = squareWave; FIXME
 }
 
 struct Filter
@@ -514,7 +514,7 @@ int AmplitudeEnvelope::getAutomationFromHost(int parameterNumber)
 int AmplitudeEnvelope::changeDryWetMix(int wetValue)
 {
     int dryValue = 1;
-    return dryValue - wetValue; 
+    return dryValue - wetValue; FIXME
 }
 
 struct Arpeggiator
@@ -537,7 +537,7 @@ bool Arpeggiator::bypassArp(bool arpState)
     {
         return arpState = false;
     }
-        return arpState;
+        return arpState; FIXME
 }
 
 int Arpeggiator::playHeldNotes(int noteMidiNumbers)
