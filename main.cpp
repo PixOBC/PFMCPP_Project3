@@ -1,19 +1,19 @@
- /*
- Project 3 - Part 2 / 5
- Video: Chapter 2 Part 6
- Implementations tasks
- 
+/*
+Project 3 - Part 2 / 5
+Video: Chapter 2 Part 6
+Implementations tasks
+
 Create a branch named Part2
 
- tasks
- 0) delete all of the plain english pseudo-code you added in Part1.
-   don't forget to remove the blank lines left behind after you remove your comments
-   - you should be left with only your UDTs.
+tasks
+0) delete all of the plain english pseudo-code you added in Part1.
+  don't forget to remove the blank lines left behind after you remove your comments
+  - you should be left with only your UDTs.
 */
 // example:
 // if you had something like this at the end of Part1e:
 /*
-Thing: Car Wash   
+Thing: Car Wash
     5 properties:
         - number of vacuum cleaners
         - number of eco-friendly cleaning supplies
@@ -28,510 +28,559 @@ Thing: Car Wash
 
 #include <iostream>
 #include <string>
-namespace Part1eVersion 
+namespace Part1eVersion
 {
-struct CarWash        
-{
-    //number of vacuum cleaners                     
-    int numVacuumCleaners = 3; 
-    //number of eco-friendly cleaning supplies      
-    int numEcoFriendlyCleaningSupplies = 20;     
-    //stores the amount of water used per week.     
-    float waterUsedPerWeek = 200.f;            
-    //stores amount of profit made per week         
-    float profitPerWeek = 495.95f;               
-    //number of cars serviced per day               
-    int numberOfCarsServiced = 10;               
-    
-    struct Car  
+    struct CarWash
     {
-        bool isAPickupTruck = false;
-        float gasMileage = 26.2f;        
-        int year = 1985;
-        std::string manufacturer = "Toyota";
-        std::string model = "Corolla";
+        //number of vacuum cleaners
+        int numVacuumCleaners = 3;
+        //number of eco-friendly cleaning supplies
+        int numEcoFriendlyCleaningSupplies = 20;
+        //stores the amount of water used per week.
+        float waterUsedPerWeek = 200.f;
+        //stores amount of profit made per week
+        float profitPerWeek = 495.95f;
+        //number of cars serviced per day
+        int numberOfCarsServiced = 10;
 
-        void fillTank(double fuelAmountInGallons = 2.0);  
-        void breakDown(std::string failureType, bool requiresTow = false);
-        int getMilesTraveledAnnually(bool includeUberLyftTrips);
+        struct Car
+        {
+            bool isAPickupTruck = false;
+            float gasMileage = 26.2f;
+            int year = 1985;
+            std::string manufacturer = "Toyota";
+            std::string model = "Corolla";
+
+            void fillTank(double fuelAmountInGallons = 2.0);
+            void breakDown(std::string failureType, bool requiresTow = false);
+            int getMilesTraveledAnnually(bool includeUberLyftTrips);
+        };
+
+        //wash and wax car
+        void washAndWaxCar( Car car );
+        //charge customer
+        float chargeCustomer(float discountPercentage);
+        //detail the car interior
+        void detailInterior( Car car );
+
+        Car carBeingServiced;
     };
-
-    //wash and wax car
-    void washAndWaxCar( Car car ); 
-    //charge customer
-    float chargeCustomer(float discountPercentage);
-    //detail the car interior
-    void detailInterior( Car car );
-    
-    Car carBeingServiced;  
-};
 }
 
-//this is what I want to see after the code is cleaned up: 
+//this is what I want to see after the code is cleaned up:
 namespace Part2Version
 {
-struct CarWash        
-{
-    int numVacuumCleaners = 3; 
-    int numEcoFriendlyCleaningSupplies = 20;     
-    float waterUsedPerWeek = 200.f;            
-    float profitPerWeek = 495.95f;               
-    int numberOfCarsServiced = 10;               
-    
-    struct Car  
+    struct CarWash
     {
-        bool isAPickupTruck = false;
-        float gasMileage = 26.2f;        
-        int year = 1985;
-        std::string manufacturer = "Toyota";
-        std::string model = "Corolla";
+        int numVacuumCleaners = 3;
+        int numEcoFriendlyCleaningSupplies = 20;
+        float waterUsedPerWeek = 200.f;
+        float profitPerWeek = 495.95f;
+        int numberOfCarsServiced = 10;
 
-        void fillTank(double fuelAmountInGallons = 2.0);  
-        void breakDown(std::string failureType, bool requiresTow = false);
-        int getMilesTraveledAnnually(bool includeUberLyftTrips);
+        struct Car
+        {
+            bool isAPickupTruck = false;
+            float gasMileage = 26.2f;
+            int year = 1985;
+            std::string manufacturer = "Toyota";
+            std::string model = "Corolla";
+
+            void fillTank(double fuelAmountInGallons = 2.0);
+            void breakDown(std::string failureType, bool requiresTow = false);
+            int getMilesTraveledAnnually(bool includeUberLyftTrips);
+        };
+
+        void washAndWaxCar( Car car );
+        float chargeCustomer(float discountPercentage);
+        void detailInterior( Car car );
+
+        Car carBeingServiced;
     };
-
-    void washAndWaxCar( Car car ); 
-    float chargeCustomer(float discountPercentage);
-    void detailInterior( Car car );
-    
-    Car carBeingServiced;  
-};
 }
-  /*
-    The above snippet is just an example showing you how to clean up your code.  
-    Do not put your cleaned up code into a namespace like I have done here.
+/*
+  The above snippet is just an example showing you how to clean up your code.
+  Do not put your cleaned up code into a namespace like I have done here.
 
- 1) write the definition for the Type that leftFoot and rightFoot are instantiations of.
-    don't forget to define and implement the member functions 'stepForward()' and 'stepSize()'
-    you should be able to deduce the return type of those functions based on their usage in Person::run()
-    You'll need to insert the Person struct from the video in the space below.
- */
+1) write the definition for the Type that leftFoot and rightFoot are instantiations of.
+  don't forget to define and implement the member functions 'stepForward()' and 'stepSize()'
+  you should be able to deduce the return type of those functions based on their usage in Person::run()
+  You'll need to insert the Person struct from the video in the space below.
+*/
 
+struct Appendage
+{
+    void stepForward();
+    int stepSize(int height);
+};
 
+void Appendage::stepForward()
+{
 
+}
 
+int Appendage::stepSize(int height)
+{
+    return height / 2;
+}
 
- /*
- 2) provide implementations for the member functions you declared in your 10 user-defined types from the previous video outside of your UDT definitions.
-    If you have warnings about 'unused parameter', you aren't using one of your function parameters in your implementation.
-    use the parameter in your implementation.
-    If you have warnings about 'overshadow', a local variable in the function has the same name as a class member.
-    change the name of your local variable so it is different than the class member's name.
- 
- 3) be sure to write the correct full qualified name for the nested type's member functions.
- 
- 4) After you finish defining each type/function, click the [run] button.  Clear up any errors or warnings as best you can.
- */
+struct Person
+{
+    int age;
+    int height;
+    float hairLength;
+    float GPA;
+    unsigned int SATScore;
+    int distanceTravelled;
+    Appendage leftFoot;
+    Appendage rightFoot;
 
+    void run (int howFast, bool startWithLeftFoot);
 
+};
+
+// goto 6:25 in Implementation video
+// Full qualified name
+void Person::run(int howFast, bool startWithLeftFoot) // include howFast by creating distance travelled in particular time period?
+{
+    if (startWithLeftFoot)
+    {
+        leftFoot.stepForward();
+        rightFoot.stepForward();
+    }
+    else
+    {
+        rightFoot.stepForward();
+        leftFoot.stepForward();
+    }
+    distanceTravelled += (leftFoot.stepSize(198) + rightFoot.stepSize(198)) * howFast;
+}
 
 /*
-Thing 1) Dragon
-5 properties:
-    1) family origin
-    2) fire power
-    3) number of knights defeated in lifetime
-    4) birthplace
-    5) age
-3 things it can do:
-    1) capture princesses
-    2) breath fire
-    3) fight knights
- */
+2) provide implementations for the member functions you declared in your 10 user-defined types from the previous video outside of your udt definitions.
+   If you have warnings about 'unused parameter', you aren't using one of your function parameters in your implementation.
+   use the parameter in your implementation.
+   If you have warnings about 'overshadow', a local variable in the function has the same name as a class member.
+   change the name of your local variable so it is different than the class member's name.
+
+3) be sure to write the correct full qualified name for the nested type's member functions.
+ // Full qualified type: include owning type, scope operator and name of the function (defining OUTSIDE the struct/class declaration)
+
+4) After you finish defining each type/function, click the [run] button.  Clear up any errors or warnings as best you can.
+*/
+
+//================================================================================
 
 struct Dragon
 {
-//    1) family origin
     std::string familyOrigin = "Smaug";
-//    2) fire power
     int firePower = 350;
-//    3) number of knights defeated in lifetime
     int knightsDefeated = 57;
-//    4) birthplace
     std::string birthplace = "Asgaard-upon-Thyme";
-//    5) age
     int age = 500;
 
-//    1) capture princesses
-    void capturePrincess(Dragon dragon);
-//    2) breath fire
-    void breathFire(int firePower);
-//    3) fight knights
-    void fightKnight(Dragon birthplace, int courageOfKnight);
+    bool capturePrincess(int dragonFirePower);
+    void breathFire(int firePower, std::string familyName);
+    bool fightKnight(int courageOfKnight);
 };
 
-/*
-Thing 2) High rise
-5 properties:
-    1) number of lifts
-    2) number of floors
-    3) number of rooms
-    4) hours per week cleaned
-    5) cost of property
-3 things it can do:
-    1) house residents
-    2) charge residents
-    3) transport residents between floors
- */
+bool Dragon::capturePrincess(int dragonFirePower)
+{
+    return dragonFirePower >= 50;
+}
+
+void Dragon::breathFire(int dragonFirePower, std::string familyName)
+{
+    double breathFireProbabilityInPercent;
+
+    if(dragonFirePower >= 10 && familyName == "Smaug")
+    {
+        breathFireProbabilityInPercent = 100;
+    }
+    else
+    {
+        breathFireProbabilityInPercent = 0;
+    }
+}
+
+bool Dragon::fightKnight(int courageOfKnight)
+{
+    return courageOfKnight >= 10;
+}
+//===================================================================
 
 struct HighRise
 {
     struct Lift
-    {          
-        // 5 properties
-//      1) manufacturer's name
+    {
         std::string manufacturerName = "Cibes";
-//      2) lift speed
         float liftSpeedMph = 8.5f;
-//      3) floor number
         int floorNumber = 4;
-//      4) room number
         int roomNumber = 570;
-//      5) number of passengers
         int numberPassengers = 5;
 
-        // 3 actions
-//    1) moves up
-        void moveLiftUp(Lift lift);
-//    2) moves down
-        void moveLiftDown(Lift lift);
-//    3) goes to penthouse suite
-        void goToPenthouse(std::string password);      
+        int moveLift(int floorNumber); // moveLiftUp() and moveLiftDown() consolidated into moveLift()
+        std::string goToPenthouse(std::string password);
     };
 
-//    1) number of lifts
-    int lifts = 3;
-//    2) number of floors
-    int floors = 58;
-//    3) number of rooms
-    int numRooms = 760;
-//    4) hours per week cleaned
+    const int lifts = 3;
+    static const int penthouseFloor = 58;
+    const int numRooms = 760;
     double hoursSpentCleaningPerWeek = 15.4;
-//    5) cost of property
     float costOfProperty = 450005.09f;
 
-//    1) house residents
-    void giveResidentKey(int roomNumber);
-//    2) charge residents
+    void giveResidentKey(int roomNumber, int roomNumberOnContract);
     int invoiceResident(int invoiceAmount);
-//    3) transport residents between floors
-    void transportResident(std::string residentName, Lift lift);
+    int transportResident(int desiredFloor, int currentFloor);
 };
 
-/*
-Thing 3) Brain
-5 properties:
-    1) number of neurones
-    2) number of functioning hemispheres
-    3) memory storage in gigabytes
-    4) calculations per second
-    5) unknown regions
-3 things it can do:
-    1) recognise faces
-    2) estimate distances
-    3) construct a language
- */
+void HighRise::giveResidentKey(int roomNumber, int roomNumberOnContract)
+{
+    if (roomNumber == roomNumberOnContract)
+    {
+        std::cout << "Key dispensed to resident" << std::endl;
+    }
+    else
+    {
+        std::cout << "Key not dispensed! Check invoice paid" << std::endl;
+    }
+}
+
+int HighRise::invoiceResident(int invoiceAmount)
+{
+    return invoiceAmount;
+}
+
+int HighRise::transportResident(int desiredFloor, int currentFloor)
+{
+    Lift lift;
+    if (currentFloor != desiredFloor)
+    {
+        return lift.moveLift(desiredFloor);
+    } 
+    return desiredFloor;    
+}
+
+int HighRise::Lift::moveLift(int floorNum)
+{
+    return floorNum;
+}
+
+std::string HighRise::Lift::goToPenthouse(std::string password)
+{
+    Lift penthouse;
+    std::string penthousePassword = "RichyRichRich";
+    if (password == penthousePassword)
+    {
+        penthouse.moveLift(penthouseFloor);
+        return "Password correct!";
+    }
+    return "Password Incorrect!";
+}
+
+//====================================================================
 
 struct Brain
 {
     struct Vision
     {
-        // 5 properties
-//      1) number of functioning eyes
         int numberOfFunctioningEyes = 2;
-//      2) vision quality
         double visionQuality = 65.5;
-//      3) blinks per second
         float blinksPerSecond = 10.0f;
-//      4) year of last eye test
         std::string yearLastEyeTest = "1985";
-//      5) Peripheral vision in degrees
         int peripheralVision = 165;
 
-        // 3 actions
-//    1) check vision
-        void checkVision(double visionQuality);
-//    2) find probability of seeing object
-        Vision probabilityOfSighting(Vision vision);
-//    3) get glasses prescription
-        Vision getGlasseesPrescription(Vision vision);        
+        void checkVision(double eyesightQuality);
+        void probabilityOfSighting(bool morning);
+        void getGlassesPrescription();
     };
 
-//    1) number of neurons
-// can I use long long?
     double numNeurons = 10e13;
-//    2) number of functioning hemispheres
     int numWorkingHemispheres = 2;
-//    3) memory storage in gigabytes
     float storageSpaceInGigabytes = 1000000.0f;
-//    4) calculations per second
     double calculationsPerSecond = 10e15;
-//    5) unknown regions
     float percentageOfUnknownBrainRegions = 0;
 
-//    1) recognise faces
     void recogniseFace(bool awake, int numberMeetingsWithPerson);
-//    2) estimate distances
-    void estimateDistance(Vision vision);
-//    3) construct a language
-    void constructLanguage(int age);
+    void estimateDistance(int distance);
+    bool constructLanguage(int age);
 };
 
-/*
-Thing 4) chord
-5 properties:
-    1) number of notes
-    2) possible next chords within key
-    3) chord number in roman numerals
-    4) has chord been altered
-    5) possible preceding chords within key
-3 things it can do:
-    1) make a sound
-    2) be played as arpeggio
-    3) be omitted
- */
+void Brain::recogniseFace(bool awake, int numberMeetingsWithPerson)
+{
+    if (awake && numberMeetingsWithPerson >= 2)
+    {
+        std::cout << "Face recognised" << std::endl;
+    }
+    else
+    {
+        std::cout << "Face not recognised" << std::endl;
+    }
+
+}
+
+void Brain::estimateDistance(int distance)
+{
+    if (distance < 250)
+    {
+        std::cout << "Distance estimated" << std::endl;
+    }
+    else
+    {
+        std::cout << "Distance could not be estimated" << std::endl;
+    }
+
+
+}
+
+bool Brain::constructLanguage(int age)
+{
+    return age >= 2;
+}
+void Brain::Vision::checkVision(double eyesightQuality)
+{
+    if (eyesightQuality < 45.8)
+    {
+        getGlassesPrescription();
+    }
+}
+
+void Brain::Vision::probabilityOfSighting(bool morning)
+{
+    if (morning)
+    {
+        std::cout << ">= 50% Chance of sighting" << std::endl;
+    }
+    else
+    {
+        std::cout << "< 50% chance of sighting" << std::endl;
+    }
+
+}
+
+void Brain::Vision::getGlassesPrescription()
+{
+    std::cout << "prescription needed" << std::endl;
+}
 
 struct Chord
 {
-
-//    1) number of notes
     int numberOfNotes = 4;
-//    2) possible next chords within key
     std::string nextChordList = "F#7, B";
-//    3) chord number in roman numerals
     std::string chordInRomanNumerals = "V7";
-//    4) has chord been altered
     bool alteredChord = false;
-//    5) possible preceding chords within key
     std::string precedingChordList = "C#m, D#m";
 
-//    1) make a sound
-    void makeSound(int NoteNumber);
-//    2) be played as arpeggio
+    int makeSound(int noteNumber);
     int playArpeggio(int numberOfHeldNotes);
-//    3) be omitted
-    void playNothing(std::string chord);
+    int playNothing(int numberOfNotes);
 };
 
-/*
-Thing 5) Keys
-5 properties:
-    1) key depressed
-    2) velocity of key pressed (1-127)
-    3) MIDI number of note pressed (1-127)
-    4) note legato value (note held, while another is played)
-    5) keyboard set to monophonic
-3 things it can do:
-    1) play legato
-    2) play chords
-    3) play monophonic
- */
+int Chord::makeSound(int noteNumber)
+{
+    if (noteNumber)
+    {
+        return noteNumber;
+    }
+    return playNothing(0);
+}
+
+int Chord::playArpeggio(int numberOfHeldNotes)
+{
+    if(numberOfHeldNotes)
+    {
+        return numberOfHeldNotes;
+    }
+    return playNothing(0);
+}
+
+int Chord::playNothing(int numOfNotes = 0)
+{
+    return numOfNotes;
+}
 
 struct Keys
 {
-
-//    1) key depressed
     bool keyDepressed = false;
-//    2) velocity of key pressed (1-127)
     int noteVelocity = 67;
-//    3) MIDI number of note pressed (1-127)
     int noteMidiNumber = 59;
-//    4) note legato value (note held, while another is played)
-    float legatoValue = 1003.5;
-//    5) keyboard set to monophonic
+    float glideValue = 1003.5;
     bool monophonicSynth = true;
 
-//    1) play legato
-    void playLegato();
-//    2) play chords
-    void playChords();
-//    3) play monophonic
-    void playMonophonic(Keys keys);
+    bool playGlide(float glideValue);
+    void playChords(Keys keys);
+    bool playMonophonic(bool monophonicSynth);
 };
 
-/*
-Thing 6) Oscillator
-5 properties:
-    1) pitch value of oscillator
-    2) octave setting of oscillator (int 'foot' selection of LFO, 32, 16, 8, 4, 2)
-    3) oscillator volume level
-    4) oscillator pitch source
-    5) waveform of oscillator
-3 things it can do:
-    1) make a sound
-    2) be an LFO
-    3) be a square wave
- */
+bool Keys::playGlide(float glideNumber)
+{
+    return playMonophonic(glideNumber > 1.0f);    
+}
+
+void Keys::playChords(Keys keys)
+{
+    keys.playMonophonic(false);
+}
+
+bool Keys::playMonophonic(bool monophonicKeys = true)
+{
+    if (monophonicKeys)
+    {
+        return monophonicSynth;
+    }
+    return monophonicKeys;    
+}
 
 struct Oscillator
 {
-//    1) pitch value of oscillator (Hz)
     int oscillatorPitch = 875;
-//    2) octave setting of oscillator (int 'foot' selection of LFO, 32, 16, 8, 4, 2)
     unsigned int oscillatorOctave = 16;
-//    3) oscillator volume level (dB)
     int oscillatorLevel = -6;
-//    4) oscillator pitch source
     std::string oscillatorPitchSource = "Keyboard";
-//    5) waveform of oscillator
     std::string oscillatorWaveform = "pulse";
 
-//    1) make a sound
-    void makeSound(Keys keys);
-//    2) be an LFO
-    void makeOscillatorAnLFO(int oscillatorNumber);
-//    3) be a square wave
-    void makeOscillatorSquareWave(int oscillatorNumber);
-
+    int makeSound(int oscillatorPitch);
+    void makeOscillatorAnLFO(int oscillatorFrequency);
+    int makeOscillatorSquareWave(int oscillatorWave);
 };
 
-/*
-Thing 7) Filter
-5 properties:
-    1) Cutoff frequency
-    2) Resonance
-    3) Attack value
-    4) Decay value
-    5) Release value
-3 things it can do:
-    1) change oscillator cutoff
-    2) change oscillator resonance
-    3) receive host automation
- */
+int Oscillator::makeSound(int oscillatorFrequency)
+{
+    return oscillatorFrequency;
+}
+
+void Oscillator::makeOscillatorAnLFO(int oscillatorFrequency)
+{
+    oscillatorFrequency = 15;
+}
+
+int Oscillator::makeOscillatorSquareWave(int oscillatorWave)
+{
+    int squareWave = 2;
+    return oscillatorWave + squareWave;
+}
 
 struct Filter
 {
-//    1) Cutoff frequency
     double cutoffFrequency = 7000.4;
-//    2) Resonance
     double resonanceFrequency = 4578.93;
-//    3) Attack value
     int attack = 89;
-//    4) Decay value
     int decay = 34;
-//    5) Release value
     int release = 89;
 
-//    1) change oscillator cutoff
-    void changeCutoff(double cutoffFrequency);
-//    2) change oscillator resonance
-    void changeResonance(double resonanceFrequency);
-//    3) receive host automation
-    void getAutomationFromHost(int parameterName);
+    double changeCutoff(double cutoffFrequency);
+    double changeResonance(double resonanceFrequency);
+    int getAutomationFromHost(int parameterNumber);
 };
 
-/*
-Thing 8) Amplitude Envelope
-5 properties:
-    1) Attack value
-    2) Decay value
-    3) Sustain value
-    4) Release value
-    5) Hold value
-3 things it can do:
-    1) adjust oscillator attack
-    2) receive host automation
-    3) change dry/wet mix value
- */
+double Filter::changeCutoff(double cutoff)
+{
+    return cutoff;   
+}
+
+double Filter::changeResonance(double resonance)
+{
+    return resonance;
+}
+
+int Filter::getAutomationFromHost(int parameterNumber)
+{
+    return parameterNumber;
+}
 
 struct AmplitudeEnvelope
 {
-//    1) Attack value
     int attack = 34;
-//    2) Decay value
     int decay = 45;
-//    3) Sustain value
     int sustain = 100;
-//    4) Release value
     int release = 20;
-//    5) Hold value
     int hold = 0;
 
-//    1) adjust oscillator attack
-    void changeAttack(int attack);
-//    2) receive host automation
-    void getAutomationFromHost(int parameterName);
-//    3) change dry/wet mix value
-    void changeDryWetMix(int dryValue, int wetValue);
-
+    void changeAttack(int newAttack);
+    int getAutomationFromHost(int parameterNumber);
+    int changeDryWetMix(int wetValue);
 };
 
-/*
-Thing 9) Arpeggiator
-5 properties:
-    1) Octave range value
-    2) Number of note repetitions before moving to next note
-    3) sequence pattern number
-    4) note playing direction
-    5) pitch duration selection
-3 things it can do:
-    1) be bypassed
-    2) play held notes
-    3) play a certain note duration
- */
+void AmplitudeEnvelope::changeAttack(int newAttack)
+{
+    attack = newAttack;
+}
+
+int AmplitudeEnvelope::getAutomationFromHost(int parameterNumber)
+{
+    return parameterNumber;
+}
+
+int AmplitudeEnvelope::changeDryWetMix(int wetValue)
+{
+    int dryValue = 1;
+    return dryValue - wetValue; 
+}
 
 struct Arpeggiator
 {
-//    1) Octave range value
     int octaveSetting = 0;
-//    2) Number of note repetitions before moving to next note
     int noteRepetitions = 2;
-//    3) sequence pattern number
     int sequencePattern = 3;
-//    4) note playing direction
     std::string arpDirection = "Up/Down";
-//    5) pitch duration selection
     int pitchDuration = 16;
 
 
-//    1) be bypassed
-    void bypassArp(bool ArpIsOn);
-//    2) play held notes
-    void playHeldNotes(int noteMidiNumbers); // would need to be array eventually
-//    3) play a certain note duration
+    bool bypassArp(bool arpState);
+    int playHeldNotes(int noteMidiNumbers);
     int playNoteDuration(int noteDuration);
 };
 
-/*
-Thing 10) Synthesiser
-5 properties:
-    1) Keys
-    2) Oscillator
-    3) Filter
-    4) Amplitude envelope
-    5) Arpeggiator
-3 things it can do:
-    1) play a note
-    2) play repeating notes
-    3) filter the sound
- */
+bool Arpeggiator::bypassArp(bool arpState)
+{
+    if(arpState)
+    {
+        arpState = false;
+    }
+    return arpState;
+}
 
-//6) your 10th UDT's properties should be instances of your #5-#9 UDTs.
-//- No primitives allowed!
+int Arpeggiator::playHeldNotes(int noteMidiNumbers)
+{
+    return noteMidiNumbers;
+}
+
+int Arpeggiator::playNoteDuration(int noteDuration)
+{
+    return noteDuration;
+}
 
 struct Synthesiser
 {
-//    1) Keys
     Keys keys;
-//    2) Oscillator
     Oscillator oscillator;
-//    3) Filter
     Filter filter;
-//    4) Amplitude envelope
     AmplitudeEnvelope amplitudeEnvelope;
-//    5) Arpeggiator
     Arpeggiator arpeggiator;
 
-//    1) play a note
-    Keys playANote(Keys keys);
-//    2) play repeating notes
-    Arpeggiator playRepeatingNotes(Arpeggiator noteRepetitions);
-//    3) filter the sound
-    Filter applyFilterToSound(Filter cutoff, Filter resonance);
+    Keys playANote(Keys notes);
+    Arpeggiator playRepeatingNotes(Arpeggiator notesPlayed);
+    Filter applyFilterToSound(double cutoff);
 };
 
+Keys Synthesiser::playANote(Keys notes)
+{
+    return notes;   
+}
 
+Arpeggiator Synthesiser::playRepeatingNotes(Arpeggiator notesPlayed)
+{
+    notesPlayed.sequencePattern = 2;
+    return notesPlayed;
+}
+
+Filter Synthesiser::applyFilterToSound(double cutoff)
+{
+    Filter cutoffValue;
+    cutoffValue.changeCutoff(cutoff);
+
+    return cutoffValue;
+}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
