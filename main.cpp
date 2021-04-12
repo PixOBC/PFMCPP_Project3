@@ -184,23 +184,16 @@ struct Dragon
     bool fightKnight(int courageOfKnight);
 };
 
-    bool Dragon::capturePrincess(int dragonFirePower)
+bool Dragon::capturePrincess(int dragonFirePower)
 {
-    if (dragonFirePower >=50)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return dragonFirePower >= 50;
 }
 
 void Dragon::breathFire(int dragonFirePower, std::string familyName)
 {
     double breathFireProbabilityInPercent;
 
-    if(dragonFirePower >=10 && familyName == "Smaug")
+    if(dragonFirePower >= 10 && familyName == "Smaug")
     {
         breathFireProbabilityInPercent = 100;
     }
@@ -212,15 +205,7 @@ void Dragon::breathFire(int dragonFirePower, std::string familyName)
 
 bool Dragon::fightKnight(int courageOfKnight)
 {
-    bool fight;
-    if (courageOfKnight >=10)
-    {
-        return fight = true;
-    }
-    else
-    {
-        return fight = false;
-    }
+    return courageOfKnight >= 10;
 }
 //===================================================================
 
@@ -272,11 +257,8 @@ int HighRise::transportResident(int desiredFloor, int currentFloor)
     if (currentFloor != desiredFloor)
     {
         return lift.moveLift(desiredFloor);
-    }
-    else
-    {
-        return desiredFloor;
-    }
+    } 
+    return desiredFloor;    
 }
 
 int HighRise::Lift::moveLift(int floorNum)
@@ -291,6 +273,7 @@ std::string HighRise::Lift::goToPenthouse(std::string password)
     if (password == penthousePassword)
     {
         penthouse.moveLift(penthouseFloor);
+        return "Password correct!";
     }
     return "Password Incorrect!";
 }
@@ -320,7 +303,7 @@ struct Brain
 
     void recogniseFace(bool awake, int numberMeetingsWithPerson);
     void estimateDistance(int distance);
-    void constructLanguage(int age);
+    bool constructLanguage(int age);
 };
 
 void Brain::recogniseFace(bool awake, int numberMeetingsWithPerson)
@@ -350,17 +333,9 @@ void Brain::estimateDistance(int distance)
 
 }
 
-void Brain::constructLanguage(int age)
+bool Brain::constructLanguage(int age)
 {
-    bool languageSuccess;
-    if (age >= 2)
-    {
-        languageSuccess = true;
-    }
-    else
-    {
-        languageSuccess = false;
-    }
+       return age >= 2;
 }
 void Brain::Vision::checkVision(double eyesightQuality)
 {
@@ -374,11 +349,11 @@ void Brain::Vision::probabilityOfSighting(bool morning)
 {
     if (morning)
     {
-        std::cout << " >=50% Chance of sighting" << std::endl;
+        std::cout << ">= 50% Chance of sighting" << std::endl;
     }
     else
     {
-        std::cout << "<50% chance of sighting" << std::endl;
+        std::cout << "< 50% chance of sighting" << std::endl;
     }
 
 }
@@ -407,10 +382,7 @@ int Chord::makeSound(int noteNumber)
     {
         return noteNumber;
     }
-    else
-    {
         return playNothing(0);
-    }
 }
 
 int Chord::playArpeggio(int numberOfHeldNotes)
@@ -419,10 +391,7 @@ int Chord::playArpeggio(int numberOfHeldNotes)
     {
         return numberOfHeldNotes;
     }
-    else
-    {
         return playNothing(0);
-    }
 }
 
 int Chord::playNothing(int numOfNotes = 0)
@@ -445,11 +414,7 @@ struct Keys
 
 bool Keys::playGlide(float glideNumber)
 {
-    if (glideNumber > 1.0f)
-    {
-        return playMonophonic(true);
-    }
-    return playMonophonic(false);
+    return playMonophonic(glideNumber > 1.0f);    
 }
 
 void Keys::playChords(Keys keys)
@@ -461,12 +426,9 @@ bool Keys::playMonophonic(bool monophonicKeys = true)
 {
     if (monophonicKeys)
     {
-        return monophonicSynth = true;
+        return monophonicSynth;
     }
-    else
-    {
-    return monophonicKeys = false;
-    }
+    return monophonicKeys;    
 }
 
 struct Oscillator
@@ -551,8 +513,7 @@ int AmplitudeEnvelope::getAutomationFromHost(int parameterNumber)
 int AmplitudeEnvelope::changeDryWetMix(int wetValue)
 {
     int dryValue = 1;
-    int mix = dryValue - wetValue;
-    return mix;
+    return dryValue -= wetValue; 
 }
 
 struct Arpeggiator
@@ -564,24 +525,29 @@ struct Arpeggiator
     int pitchDuration = 16;
 
 
-    void bypassArp(bool arpIsOn)
+    bool bypassArp(bool arpState);
+    int playHeldNotes(int noteMidiNumbers);
+    int playNoteDuration(int noteDuration);
+};
+
+    bool Arpeggiator::bypassArp(bool arpState)
     {
-        if(!arpIsOn)
-            arpIsOn = false;
-        else
-            arpIsOn = true;
+        if(arpState)
+        {
+            return arpState = false;
+        }
+            return arpState;
     }
 
-    int playHeldNotes(int noteMidiNumbers)
+    int Arpeggiator::playHeldNotes(int noteMidiNumbers)
     {
         return noteMidiNumbers;
     }
 
-    int playNoteDuration(int noteDuration)
+    int Arpeggiator::playNoteDuration(int noteDuration)
     {
         return noteDuration;
     }
-};
 
 struct Synthesiser
 {
@@ -612,7 +578,7 @@ Filter Synthesiser::applyFilterToSound(double cutoff)
     Filter cutoffValue;
     cutoffValue.changeCutoff(cutoff);
 
-    return (cutoffValue);
+    return cutoffValue;
 }
 
 /*
