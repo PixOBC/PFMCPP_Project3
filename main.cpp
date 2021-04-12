@@ -335,7 +335,7 @@ void Brain::estimateDistance(int distance)
 
 bool Brain::constructLanguage(int age)
 {
-       return age >= 2;
+    return age >= 2;
 }
 void Brain::Vision::checkVision(double eyesightQuality)
 {
@@ -382,7 +382,7 @@ int Chord::makeSound(int noteNumber)
     {
         return noteNumber;
     }
-        return playNothing(0);
+    return playNothing(0);
 }
 
 int Chord::playArpeggio(int numberOfHeldNotes)
@@ -391,7 +391,7 @@ int Chord::playArpeggio(int numberOfHeldNotes)
     {
         return numberOfHeldNotes;
     }
-        return playNothing(0);
+    return playNothing(0);
 }
 
 int Chord::playNothing(int numOfNotes = 0)
@@ -456,7 +456,8 @@ void Oscillator::makeOscillatorAnLFO(int oscillatorFrequency)
 
 int Oscillator::makeOscillatorSquareWave(int oscillatorWave)
 {
-    return oscillatorWave = 2;
+    int squareWave = 2;
+    return oscillatorWave = squareWave;
 }
 
 struct Filter
@@ -513,7 +514,7 @@ int AmplitudeEnvelope::getAutomationFromHost(int parameterNumber)
 int AmplitudeEnvelope::changeDryWetMix(int wetValue)
 {
     int dryValue = 1;
-    return dryValue -= wetValue; 
+    return dryValue - wetValue; 
 }
 
 struct Arpeggiator
@@ -530,24 +531,24 @@ struct Arpeggiator
     int playNoteDuration(int noteDuration);
 };
 
-    bool Arpeggiator::bypassArp(bool arpState)
+bool Arpeggiator::bypassArp(bool arpState)
+{
+    if(arpState)
     {
-        if(arpState)
-        {
-            return arpState = false;
-        }
-            return arpState;
+        return arpState = false;
     }
+        return arpState;
+}
 
-    int Arpeggiator::playHeldNotes(int noteMidiNumbers)
-    {
-        return noteMidiNumbers;
-    }
+int Arpeggiator::playHeldNotes(int noteMidiNumbers)
+{
+    return noteMidiNumbers;
+}
 
-    int Arpeggiator::playNoteDuration(int noteDuration)
-    {
-        return noteDuration;
-    }
+int Arpeggiator::playNoteDuration(int noteDuration)
+{
+    return noteDuration;
+}
 
 struct Synthesiser
 {
@@ -564,7 +565,7 @@ struct Synthesiser
 
 Keys Synthesiser::playANote(Keys notes)
 {
-        return notes;   
+    return notes;   
 }
 
 Arpeggiator Synthesiser::playRepeatingNotes(Arpeggiator notesPlayed)
@@ -598,6 +599,5 @@ Filter Synthesiser::applyFilterToSound(double cutoff)
 #include <iostream>
 int main()
 {
-
     std::cout << "good to go!" << std::endl;
 }
