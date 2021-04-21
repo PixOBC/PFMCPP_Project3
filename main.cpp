@@ -26,6 +26,9 @@
  example:
  */
 
+// TODO Each of your UDTs has 3 member functions.
+//  I need you to add std::cout statements to one member function IN EACH CLASS.
+
 #include <iostream>
 namespace Example
 {
@@ -93,14 +96,7 @@ bool Dragon::capturePrincess(int dragonFirePower)
 
 void Dragon::breathFire(int dragonFirePower, std::string familyName)
 {
-    if(dragonFirePower >= 10 && familyName == "Smaug")
-    {
-        std::cout << "You have been incinerated!" << std::endl;
-    }
-    else
-    {
-        std::cout << "You have not been incinerated!" << std::endl;
-    }
+    std::cout << "You have" << (dragonFirePower >= 10 && familyName == "Smaug" ? " " : " not ") << "been incinerated." << std::endl;
 }
 
 bool Dragon::fightKnight(int courageOfKnight)
@@ -173,9 +169,9 @@ HighRise::Lift::Lift()
 {
 }
 
-
 int HighRise::Lift::moveLift(int floorNum)
 {
+    std::cout << "Welcome to our HighRise, I'm Mr. Ballard. This lift is travelling to floor " << floorNum <<  ". Have a pleasant trip." << std::endl;
     return floorNum;
 }
 
@@ -229,15 +225,7 @@ Brain::Brain()
 
 void Brain::recogniseFace(bool awake, int numberMeetingsWithPerson)
 {
-    if (awake && numberMeetingsWithPerson >= 2)
-    {
-        std::cout << "Face recognised" << std::endl;
-    }
-    else
-    {
-        std::cout << "Face not recognised" << std::endl;
-    }
-
+    std::cout << "Face" <<  (awake && numberMeetingsWithPerson >= 2 ? " " : " not ") << "recognised" << std::endl;
 }
 
 void Brain::estimateDistance(int distance)
@@ -327,6 +315,7 @@ int Chord::playArpeggio(int numberOfHeldNotes)
 
 int Chord::playNothing(int numOfNotes = 0)
 {
+    std::cout << "DEBUG: NOTHING WILL BE PLAYED" << std::endl;
     return numOfNotes;
 }
 
@@ -347,6 +336,7 @@ struct Keys
 
 Keys::Keys()
 {
+    std::cout << "WARNING: Key object operating in DEBUG mode" << std::endl;
 }
 
 bool Keys::playGlide(float glideNumber)
@@ -389,6 +379,7 @@ Oscillator::Oscillator()
 
 int Oscillator::makeSound(int oscillatorFrequency)
 {
+    std::cout << "PLAYING PITCH: " << oscillatorFrequency << std::endl;
     return oscillatorFrequency;
 }
 
@@ -420,6 +411,7 @@ struct Filter
 
 Filter::Filter()
 {
+    std::cout << "Filter instantiated" << std::endl;
 }
 
 double Filter::changeCutoff(double cutoff)
@@ -459,6 +451,7 @@ AmplitudeEnvelope::AmplitudeEnvelope()
 void AmplitudeEnvelope::changeAttack(int newAttack)
 {
     attack = newAttack;
+    std::cout << "Attack Lvl: " << newAttack << std::endl;
 }
 
 int AmplitudeEnvelope::getAutomationFromHost(int parameterNumber)
@@ -508,6 +501,7 @@ int Arpeggiator::playHeldNotes(int noteMidiNumbers)
 
 int Arpeggiator::playNoteDuration(int noteDuration)
 {
+    std::cout << "Note duration selected: " << noteDuration << std::endl;
     return noteDuration;
 }
 
@@ -537,6 +531,7 @@ Keys Synthesiser::playANote(Keys notes)
 
 Arpeggiator Synthesiser::playRepeatingNotes(Arpeggiator notesPlayed)
 {
+    std::cout << "Sequence Pattern: " <<  notesPlayed.sequencePattern << std::endl;
     notesPlayed.sequencePattern = 2;
     return notesPlayed;
 }
@@ -572,7 +567,10 @@ int main()
     Dragon d;
     HighRise badgerClose;
     HighRise::Lift lift;
+
     Brain einstein;
+    einstein.recogniseFace(true, 5);
+
     Brain::Vision wanda;
     Chord fSharp;
     Keys keys;
@@ -583,7 +581,7 @@ int main()
     Synthesiser synth;
 
     Dragon dragon;
-    dragon.breathFire(500, "Smaug");
+    dragon.breathFire(8, "Smaug");
 
     Chord chord;
     std::cout << "Make Sound: " << chord.makeSound(67) << std::endl;
@@ -594,6 +592,7 @@ int main()
 
     HighRise::Lift lift2;
     std::cout << "Resident roomNumber: " << lift2.roomNumber << std::endl;
+    lift2.moveLift(5);
 
     Brain person;
     person.estimateDistance(678);
