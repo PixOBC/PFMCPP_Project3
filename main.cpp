@@ -532,6 +532,7 @@ Filter Synthesiser::applyFilterToSound(double cutoff)
 int main()
 {
     HighRise highRise;
+    
 
     // 3) Instantiating UDTs
     Dragon d;
