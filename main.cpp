@@ -4,34 +4,34 @@
  Member initialization tasks
 
  Create a branch named Part4
- 
+
  1) initialize some of your member variables either in-class or in the Constructor member initializer list.
 
  2) make some of your member functions use those initialized member variables via std::cout statements.
- 
+
  3) click the [run] button.  Clear up any errors or warnings as best you can.
  */
 
 #include <iostream>
-namespace Example 
+namespace Example
 {
-struct UDT  
-{
-    int a; //a member variable
-    float b { 2.f }; //3) in-class initialization
-    UDT() : a(0) { } //3) 'constructor-initializer-list' member variable initialization
-    void printThing()  //the member function
+    struct UDT
     {
-        std::cout << "UDT::printThing() a:" << a << " b: " << b << std::endl;  //4) printing out something interesting
-    }
-};
+        int a; //a member variable
+        float b { 2.f }; //3) in-class initialization
+        UDT() : a(0) { } //3) 'constructor-initializer-list' member variable initialization
+        void printThing()  //the member function
+        {
+            std::cout << "UDT::printThing() a:" << a << " b: " << b << std::endl;  //4) printing out something interesting
+        }
+    };
 
-int main()
-{
-    UDT foo; //instantiating a Foo in main()
-    foo.printThing(); //calling a member function of the instance that was instantiated.
-    return 0;
-}
+    int main()
+    {
+        UDT foo; //instantiating a Foo in main()
+        foo.printThing(); //calling a member function of the instance that was instantiated.
+        return 0;
+    }
 }
 
 //call Example::main()
@@ -42,11 +42,11 @@ int main()
 
 struct Dragon
 {
-    std::string familyOrigin = "Smaug";
-    int firePower = 350;
+    std::string familyOrigin  {"Smaug"};
+    int firePower;
     int knightsDefeated = 57;
     std::string birthplace = "Asgaard-upon-Thyme";
-    int age = 500;
+    int age;
 
     Dragon();
 
@@ -56,11 +56,15 @@ struct Dragon
 };
 
 Dragon::Dragon()
+    : firePower(350),
+      age(500)
 {
 }
 
 bool Dragon::capturePrincess(int dragonFirePower)
 {
+    std::cout << "Last known firepower: " << firePower << std::endl;
+    firePower = dragonFirePower;
     return dragonFirePower >= 50;
 }
 
@@ -79,11 +83,11 @@ struct HighRise
 {
     struct Lift
     {
-        std::string manufacturerName = "Cibes";
-        float liftSpeedMph = 8.5f;
-        int floorNumber = 4;
-        int roomNumber = 570;
-        int numberPassengers = 5;
+        std::string manufacturerName;
+        float liftSpeedMph;
+        int floorNumber;
+        int roomNumber;
+        int numberPassengers;
 
         Lift();
 
@@ -95,7 +99,7 @@ struct HighRise
     static const int penthouseFloor = 58;
     const int numRooms = 760;
     double hoursSpentCleaningPerWeek = 15.4;
-    float costOfProperty = 450005.09f;
+    float costOfProperty;
 
     HighRise();
 
@@ -105,11 +109,13 @@ struct HighRise
 };
 
 HighRise::HighRise()
+    : costOfProperty(450005.09f)
 {
 }
 
 void HighRise::giveResidentKey(int roomNumber, int roomNumberOnContract)
 {
+    std::cout << "Resident room number is: " << roomNumber << "\n";
     if (roomNumber == roomNumberOnContract)
     {
         std::cout << "Key dispensed to resident" << std::endl;
@@ -136,7 +142,12 @@ int HighRise::transportResident(int desiredFloor, int currentFloor)
 }
 
 HighRise::Lift::Lift()
-{
+    : manufacturerName("Cibes"),
+      liftSpeedMph(8.5f),
+      floorNumber(4),
+      roomNumber(570),
+      numberPassengers(5)
+{;
 }
 
 int HighRise::Lift::moveLift(int floorNum)
@@ -163,9 +174,9 @@ struct Brain
 {
     struct Vision
     {
-        int numberOfFunctioningEyes = 2;
-        double visionQuality = 65.5;
-        float blinksPerSecond = 10.0f;
+        int numberOfFunctioningEyes;
+        double visionQuality;
+        float blinksPerSecond;
         std::string yearLastEyeTest = "1985";
         int peripheralVision = 165;
 
@@ -176,7 +187,7 @@ struct Brain
         void getGlassesPrescription();
     };
 
-    double numNeurons = 10e13;
+    double numNeurons;
     int numWorkingHemispheres = 2;
     float storageSpaceInGigabytes = 1000000.0f;
     double calculationsPerSecond = 10e15;
@@ -190,6 +201,8 @@ struct Brain
 };
 
 Brain::Brain()
+    : numNeurons(10e13)
+
 {
 }
 
@@ -201,7 +214,7 @@ void Brain::recogniseFace(bool awake, int numberMeetingsWithPerson)
 void Brain::estimateDistance(int distance)
 {
     std::cout << "Distance: ";
-    if (distance < 250)
+    if (distance < 250 && numNeurons < 10e10)
     {
         std::cout << "Distance estimated" << std::endl;
     }
@@ -217,12 +230,17 @@ bool Brain::constructLanguage(int age)
 }
 
 Brain::Vision::Vision()
+    : numberOfFunctioningEyes(2),
+      visionQuality(65.5),
+      blinksPerSecond(10.0f)
 {
 }
 
-void Brain::Vision::checkVision(double eyesightQuality)
+void Brain::Vision::checkVision(double eyeQuality)
 {
-    if (eyesightQuality < 45.8)
+    visionQuality = eyeQuality;
+    std::cout << "You're vision quality is: " << visionQuality << std::endl;
+    if (eyeQuality < 45.8)
     {
         getGlassesPrescription();
     }
@@ -251,7 +269,7 @@ struct Chord
     std::string nextChordList = "F#7, B";
     std::string chordInRomanNumerals = "V7";
     bool alteredChord = false;
-    std::string precedingChordList = "C#m, D#m";
+    std::string precedingChordList;
 
     Chord();
 
@@ -261,6 +279,7 @@ struct Chord
 };
 
 Chord::Chord()
+    : precedingChordList("C#m, D#m")
 {
 
 }
@@ -311,6 +330,7 @@ Keys::Keys()
 
 bool Keys::playGlide(float glideNumber)
 {
+    std::cout << "Glide val: " << glideValue << std::endl;
     return playMonophonic(glideNumber > 1.0f);
 }
 
@@ -330,7 +350,7 @@ bool Keys::playMonophonic(bool monophonicKeys = true)
 
 struct Oscillator
 {
-    int oscillatorPitch = 875;
+    int oscillatorPitch;
     unsigned int oscillatorOctave = 16;
     int oscillatorLevel = -6;
     std::string oscillatorPitchSource = "Keyboard";
@@ -345,6 +365,7 @@ struct Oscillator
 
 Oscillator::Oscillator()
 {
+    oscillatorPitch = 875;
 }
 
 int Oscillator::makeSound(int oscillatorFrequency)
@@ -391,6 +412,7 @@ double Filter::changeCutoff(double cutoff)
 
 double Filter::changeResonance(double resonance)
 {
+    std::cout << "Resonance: " << resonance << std::endl;
     return resonance;
 }
 
@@ -401,11 +423,11 @@ int Filter::getAutomationFromHost(int parameterNumber)
 
 struct AmplitudeEnvelope
 {
-    int attack = 34;
-    int decay = 45;
-    int sustain = 100;
-    int release = 20;
-    int hold = 0;
+    int attack;
+    int decay;
+    int sustain;
+    int release;
+    int hold;
 
     AmplitudeEnvelope();
 
@@ -415,6 +437,11 @@ struct AmplitudeEnvelope
 };
 
 AmplitudeEnvelope::AmplitudeEnvelope()
+    : attack(34),
+      decay (45),
+      sustain(100),
+      release(20),
+      hold(0)
 {
 }
 
