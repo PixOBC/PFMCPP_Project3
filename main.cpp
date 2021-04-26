@@ -84,7 +84,7 @@ struct Dragon
     bool capturePrincess(int dragonFirePower);
     void breathFire(int firePower, std::string familyName);
     bool fightKnight(int courageOfKnight);
-    void spellBirthplace(std::string birthplace);
+    void spellBirthplace(std::string placeOfBirth);
 
 };
 
@@ -111,17 +111,17 @@ bool Dragon::fightKnight(int courageOfKnight)
     return courageOfKnight >= 10;
 }
 
-void Dragon::spellBirthplace(std::string birthplace)
+void Dragon::spellBirthplace(std::string placeOfBirth)
 {
     int value = 0;
     std::cout << "Is this how you spell your place of birth Mr. Dragon, sir? ";
 
-    for(auto &c : birthplace)
+    for(auto &c : placeOfBirth)
     {
         c = std::toupper(c);
         std::cout << "-";
     }
-    std::cout << birthplace << std::endl;
+    std::cout << placeOfBirth << std::endl;
 }
 //===================================================================
 
@@ -336,24 +336,24 @@ void Brain::Vision::getGlassesPrescription()
 void Brain::Vision::visionTest()
 {
     const unsigned numQuestions = 25;
-    bool result;
+    bool result; // pass/fail
     int count = 0;
+
     std::uniform_int_distribution<unsigned> answer(0, 1);
     std::default_random_engine e;
-    std::cout << "RANDOM TEST RESULTS: ";
+    std::cout << "RANDOM DATA - TEST RESULT: ";
     for (size_t i = 0; i < numQuestions; ++i)
     {
-       std::cout << answer(e) << " ";
-       result = answer(e);
-       if(result)
+        answer(e);
+        result = answer(e);
+       //std::cout << result << " ";
+       if (result)
        {
            ++count;
        }
+        std::cout << result << " ";
     }
-    std::cout << std::endl;
-    std::cout << "count: " << count << std::endl;
-    // need to get the result
-
+    std::cout << (count > 20 ? "PASS" : "FAIL") << std::endl;
 
 }
 void Brain::Vision::issueDriversLicense()
@@ -697,7 +697,8 @@ int main()
     person.estimateDistance(678);
 
     Brain::Vision vision;
-    vision.visionTest();
+    //vision.visionTest();
+    vision.issueDriversLicense();
 
 
 
