@@ -28,6 +28,7 @@ Create a branch named Part5
 
 #include <iostream>
 #include <vector>
+#include <random>
 namespace Example 
 {
 struct Bar 
@@ -251,6 +252,7 @@ struct Brain
         void checkVision(double eyesightQuality);
         void probabilityOfSighting(bool morning);
         void getGlassesPrescription();
+        void visionTest();
         void issueDriversLicense(); // add random values
     };
 
@@ -325,15 +327,31 @@ void Brain::Vision::probabilityOfSighting(bool morning)
     }
 }
 
+
 void Brain::Vision::getGlassesPrescription()
 {
     std::cout << "prescription needed" << std::endl;
 }
 
-void issueDriversLicense()
+void Brain::Vision::visionTest()
 {
-    // TODO create random bool values for test if true wins then issue license
+    //TODO create random bool values for test. If true wins then issue license
+    // called in issueDriversLicense
+    const unsigned numQuestions = 25;
+    std::uniform_int_distribution<unsigned> answer(0, 1);
+    std::default_random_engine e;
+    std::vector<unsigned> result;
+    for (size_t i = 0; i < numQuestions; ++i)
+    {
+        result.push_back(answer(e));
+    }
+    // need to get the result
+    std::cout << ((result > 20) ? "PASS!" : "Test failed." ) << std::endl;
 
+}
+void Brain::Vision::issueDriversLicense()
+{
+    visionTest();
 }
 
 //============================================================================
