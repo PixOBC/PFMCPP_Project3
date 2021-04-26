@@ -335,18 +335,25 @@ void Brain::Vision::getGlassesPrescription()
 
 void Brain::Vision::visionTest()
 {
-    //TODO create random bool values for test. If true wins then issue license
-    // called in issueDriversLicense
     const unsigned numQuestions = 25;
+    bool result;
+    int count = 0;
     std::uniform_int_distribution<unsigned> answer(0, 1);
     std::default_random_engine e;
-    std::vector<unsigned> result;
+    std::cout << "RANDOM TEST RESULTS: ";
     for (size_t i = 0; i < numQuestions; ++i)
     {
-        result.push_back(answer(e));
+       std::cout << answer(e) << " ";
+       result = answer(e);
+       if(result)
+       {
+           ++count;
+       }
     }
+    std::cout << std::endl;
+    std::cout << "count: " << count << std::endl;
     // need to get the result
-    std::cout << ((result > 20) ? "PASS!" : "Test failed." ) << std::endl;
+
 
 }
 void Brain::Vision::issueDriversLicense()
@@ -688,6 +695,9 @@ int main()
 
     Brain person;
     person.estimateDistance(678);
+
+    Brain::Vision vision;
+    vision.visionTest();
 
 
 
