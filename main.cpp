@@ -27,6 +27,7 @@ Create a branch named Part5
  */
 
 #include <iostream>
+#include <vector>
 namespace Example 
 {
 struct Bar 
@@ -82,6 +83,8 @@ struct Dragon
     bool capturePrincess(int dragonFirePower);
     void breathFire(int firePower, std::string familyName);
     bool fightKnight(int courageOfKnight);
+    void spellBirthplace(std::string birthplace);
+
 };
 
 Dragon::Dragon()
@@ -105,6 +108,18 @@ void Dragon::breathFire(int dragonFirePower, std::string familyName)
 bool Dragon::fightKnight(int courageOfKnight)
 {
     return courageOfKnight >= 10;
+}
+
+void Dragon::spellBirthplace(std::string birthplace)
+{
+    int value = 0;
+    std::cout << "Is this how you spell your place of birth Mr. Dragon, sir? ";
+    while(value < birthplace.size())
+    {
+        std::cout << birthplace[value] << "-" << std::flush;
+        ++value;
+    }
+    std::cout << std::endl;
 }
 //===================================================================
 
@@ -608,6 +623,7 @@ int main()
 
     Dragon dragon;
     dragon.breathFire(8, "Smaug");
+    dragon.spellBirthplace("Hull");
 
     Chord chord;
     std::cout << "Make Sound: " << chord.makeSound(67) << std::endl;
@@ -622,6 +638,8 @@ int main()
 
     Brain person;
     person.estimateDistance(678);
+
+
 
 
     std::cout << "good to go!" << std::endl;
