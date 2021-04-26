@@ -114,12 +114,13 @@ void Dragon::spellBirthplace(std::string birthplace)
 {
     int value = 0;
     std::cout << "Is this how you spell your place of birth Mr. Dragon, sir? ";
-    while(value < birthplace.size())
+
+    for(auto &c : birthplace)
     {
-        std::cout << birthplace[value] << "-" << std::flush;
-        ++value;
+        c = std::toupper(c);
+        std::cout << "-";
     }
-    std::cout << std::endl;
+    std::cout << birthplace << std::endl;
 }
 //===================================================================
 
@@ -137,6 +138,7 @@ struct HighRise
 
         int moveLift(int floorNumber); // moveLiftUp() and moveLiftDown() consolidated into moveLift()
         std::string goToPenthouse(std::string password);
+        void visitEveryFloor(int startingFloorNumber);
     };
 
     const int lifts = 3;
@@ -212,6 +214,26 @@ std::string HighRise::Lift::goToPenthouse(std::string password)
     return "Password Incorrect!";
 }
 
+void HighRise::Lift::visitEveryFloor(int startingFloorNumber)
+{
+    int totalNumFloors = 58;
+    int currentFloorNum = startingFloorNumber;
+
+    while(currentFloorNum)
+    {
+        std::cout << "Your current floor is: " << currentFloorNum << std::endl;
+        if(currentFloorNum >= totalNumFloors)
+        {
+            currentFloorNum = currentFloorNum %totalNumFloors;
+        }
+        else if(currentFloorNum == (startingFloorNumber -1))
+        {
+            break;
+        }
+        ++currentFloorNum;
+    }
+}
+
 //====================================================================
 
 struct Brain
@@ -229,6 +251,7 @@ struct Brain
         void checkVision(double eyesightQuality);
         void probabilityOfSighting(bool morning);
         void getGlassesPrescription();
+        void issueDriversLicense(); // add random values
     };
 
     double numNeurons;
@@ -306,6 +329,14 @@ void Brain::Vision::getGlassesPrescription()
 {
     std::cout << "prescription needed" << std::endl;
 }
+
+void issueDriversLicense()
+{
+    // TODO create random bool values for test if true wins then issue license
+
+}
+
+//============================================================================
 
 struct Chord
 {
@@ -635,6 +666,7 @@ int main()
     HighRise::Lift lift2;
     std::cout << "Resident roomNumber: " << lift2.roomNumber << std::endl;
     lift2.moveLift(5);
+    lift2.visitEveryFloor(34);
 
     Brain person;
     person.estimateDistance(678);
