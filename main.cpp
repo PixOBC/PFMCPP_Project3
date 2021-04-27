@@ -113,13 +113,12 @@ bool Dragon::fightKnight(int courageOfKnight)
 
 void Dragon::spellBirthplace(std::string placeOfBirth)
 {
-    int value = 0;
+    //int value = 0;
     std::cout << "Is this how you spell your place of birth Mr. Dragon, sir? ";
 
     for(auto &c : placeOfBirth)
     {
         c = std::toupper(c);
-        std::cout << "-";
     }
     std::cout << placeOfBirth << std::endl;
 }
@@ -220,11 +219,13 @@ void HighRise::Lift::visitEveryFloor(int startingFloorNumber)
     int totalNumFloors = 58;
     int currentFloorNum = startingFloorNumber;
 
+    std::cout << "So, you've chosen to travel to EVERY floor, eh?\n";
     while(currentFloorNum)
     {
         std::cout << "Your current floor is: " << currentFloorNum << std::endl;
         if(currentFloorNum >= totalNumFloors)
         {
+            std::cout << "AAAAAAAALLLLL the way to the bottom!!!...\n";
             currentFloorNum = currentFloorNum %totalNumFloors;
         }
         else if(currentFloorNum == (startingFloorNumber -1))
@@ -267,6 +268,7 @@ struct Brain
     void recogniseFace(bool awake, int numberMeetingsWithPerson);
     void estimateDistance(int distance);
     bool constructLanguage(int age);
+    int findFaceInMemory();
 };
 
 Brain::Brain()
@@ -296,6 +298,26 @@ void Brain::estimateDistance(int distance)
 bool Brain::constructLanguage(int age)
 {
     return age >= 2;
+}
+
+int Brain::findFaceInMemory()
+{
+    int val = 1;
+    std::vector<int> storageSpace; // need empty vector to populate
+    int faceLocationInMemory = 0;
+    for(int val = 0; val <= 10; ++val)
+    {
+        storageSpace.push_back(val);
+        if (storageSpace[val] >= storageSpace[900])
+        {
+            faceLocationInMemory = storageSpace[val];
+            break;
+        }
+    }
+    std::cout << "Found the correct face at neuron: " << storageSpace[val] << std::endl;
+    return faceLocationInMemory;
+
+
 }
 
 Brain::Vision::Vision()
@@ -353,7 +375,7 @@ void Brain::Vision::visionTest()
        }
         std::cout << result << " ";
     }
-    std::cout << (count > 20 ? "PASS" : "FAIL") << std::endl;
+    std::cout << "\n" <<(count > 20 ? "PASS" : "FAIL") << std::endl;
 
 }
 void Brain::Vision::issueDriversLicense()
@@ -461,6 +483,7 @@ struct Oscillator
     int makeSound(int oscillatorPitch);
     void makeOscillatorAnLFO(int oscillatorFrequency);
     int makeOscillatorSquareWave(int oscillatorWave);
+    void getPhaseIndex();
 };
 
 Oscillator::Oscillator()
@@ -695,6 +718,7 @@ int main()
 
     Brain person;
     person.estimateDistance(678);
+    person.findFaceInMemory();
 
     Brain::Vision vision;
     //vision.visionTest();
