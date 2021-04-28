@@ -643,6 +643,7 @@ struct AmplitudeEnvelope
     void changeAttack(int newAttack);
     int getAutomationFromHost(int parameterNumber);
     int changeDryWetMix(int wetValue);
+    void emergencyVolumeLimiter();
 
 };
 
@@ -670,6 +671,31 @@ int AmplitudeEnvelope::changeDryWetMix(int wetValue)
 {
     int dryValue = 1;
     return dryValue - wetValue;
+}
+
+void AmplitudeEnvelope::emergencyVolumeLimiter()
+{
+    static std::vector<double> buffer;
+
+    static std::default_random_engine engine;
+    std::uniform_int_distribution<unsigned> distribution(0, 2);
+
+
+    for(size_t i = 0; i < 20; ++i)
+    {
+        buffer.push_back(distribution(engine));
+    }
+
+    std::cout << "Buffer sample value: ";
+    for (auto c : buffer)
+    {
+        if (c > 1)
+        {
+            //std::cout <<"WARNING! AMPLITUDE HAS EXCEED THRESHOLD: ";
+            c = 1;
+        }
+        std:: cout << c << " ";
+    }
 }
 
 //=======================================================================
@@ -797,6 +823,8 @@ int main()
     filter.findHpStopBand(7600);
     SPACE
     AmplitudeEnvelope ampEnv;
+    ampEnv.emergencyVolumeLimiter();
+    SPACE
     Arpeggiator arp;
     Synthesiser synth;
     SPACE
