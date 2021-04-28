@@ -304,17 +304,17 @@ int Brain::findFaceInMemory()
 {
     int val = 1;
     std::vector<int> storageSpace; // need empty vector to populate
-    int faceLocationInMemory = 0;
-    for(int val = 0; val <= 10; ++val)
+    int faceLocationInMemory = 900;
+    for(int val = 0; val <= 1000000; ++val)
     {
         storageSpace.push_back(val);
-        if (storageSpace[val] >= storageSpace[900])
+        if (storageSpace[val] >= faceLocationInMemory)
         {
-            faceLocationInMemory = storageSpace[val];
+            std::cout << "Found the correct face at neuron: " << storageSpace[val] << std::endl;
             break;
         }
     }
-    std::cout << "Found the correct face at neuron: " << storageSpace[val] << std::endl;
+
     return faceLocationInMemory;
 
 
