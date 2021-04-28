@@ -530,7 +530,8 @@ struct Oscillator
     void makeOscillatorAnLFO(int oscillatorFrequency);
     int makeOscillatorSquareWave(int oscillatorWave);
     void getPhaseIndex();
-    
+    std::vector<int> populateWaveWithData();
+
 };
 
 Oscillator::Oscillator()
@@ -553,6 +554,23 @@ int Oscillator::makeOscillatorSquareWave(int oscillatorWave)
 {
     int squareWave = 2;
     return oscillatorWave + squareWave;
+}
+
+std::vector<int> Oscillator::populateWaveWithData()
+{
+    int container[10] = {0, 3, 7, 7, 10, 4, 5, 6, 3, 8};
+    std::vector<int> waveFormSamples;
+    for (int sample = 0; sample < 10; ++sample)
+    {
+        waveFormSamples.push_back(container[sample]);
+    }
+    std::cout << "Sample values for wave: ";
+    for(auto c : waveFormSamples)
+    {
+        std::cout << c << " ";
+    }
+
+    return waveFormSamples;
 }
 
 //=======================================================================
@@ -755,10 +773,13 @@ int main()
     keys.velocityLimiter(120);
     SPACE
     Oscillator osc;
+    osc.populateWaveWithData();
+    SPACE
     Filter filter;
     AmplitudeEnvelope ampEnv;
     Arpeggiator arp;
     Synthesiser synth;
+    SPACE
 
     Dragon dragon;
     dragon.breathFire(8, "Smaug");
