@@ -588,6 +588,7 @@ struct Filter
     double changeCutoff(double cutoffFrequency);
     double changeResonance(double resonanceFrequency);
     int getAutomationFromHost(int parameterNumber);
+    int findHpStopBand(int hpCutoff);
 };
 
 Filter::Filter()
@@ -610,6 +611,22 @@ int Filter::getAutomationFromHost(int parameterNumber)
 {
     return parameterNumber;
 }
+int Filter::findHpStopBand(int hpCutoff)
+{
+    int humanHearingRangeHigh = 20000;
+    int passBand;
+    int stopBand;
+
+    for (int frequency = 20; frequency <= humanHearingRangeHigh; ++frequency)
+    {
+        if(frequency == hpCutoff)
+        {
+            stopBand = humanHearingRangeHigh - hpCutoff;
+            std::cout << "stop band < " << stopBand << "Hz" << std::endl;
+        }
+    }
+    return stopBand;
+}
 
 //=======================================================================
 
@@ -626,6 +643,7 @@ struct AmplitudeEnvelope
     void changeAttack(int newAttack);
     int getAutomationFromHost(int parameterNumber);
     int changeDryWetMix(int wetValue);
+
 };
 
 AmplitudeEnvelope::AmplitudeEnvelope()
@@ -776,6 +794,8 @@ int main()
     osc.populateWaveWithData();
     SPACE
     Filter filter;
+    filter.findHpStopBand(7600);
+    SPACE
     AmplitudeEnvelope ampEnv;
     Arpeggiator arp;
     Synthesiser synth;
