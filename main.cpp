@@ -29,6 +29,10 @@ Create a branch named Part5
 #include <iostream>
 #include <vector>
 #include <random>
+
+// create SPACE macro for main to separate calls to functions
+#define SPACE std::cout << std::endl;
+
 namespace Example 
 {
 struct Bar 
@@ -220,12 +224,14 @@ void HighRise::Lift::visitEveryFloor(int startingFloorNumber)
     int currentFloorNum = startingFloorNumber;
 
     std::cout << "So, you've chosen to travel to EVERY floor, eh?\n";
+    std::cout << "Your current floor is: ";
     while(currentFloorNum)
     {
-        std::cout << "Your current floor is: " << currentFloorNum << std::endl;
+        std::cout << currentFloorNum << " ";
         if(currentFloorNum >= totalNumFloors)
         {
-            std::cout << "AAAAAAAALLLLL the way to the bottom!!!...\n";
+            std::cout << std::endl;
+            std::cout << "AAAAAAAALLLLL the way to the bottom!!!...";
             currentFloorNum = currentFloorNum %totalNumFloors;
         }
         else if(currentFloorNum == (startingFloorNumber -1))
@@ -398,12 +404,12 @@ struct Chord
     int makeSound(int noteNumber);
     int playArpeggio(int numberOfHeldNotes);
     int playNothing(int numberOfNotes);
+    void playThroughAllKeys();
 };
 
 Chord::Chord()
     : precedingChordList("C#m, D#m")
 {
-
 }
 
 int Chord::makeSound(int noteNumber)
@@ -430,6 +436,24 @@ int Chord::playNothing(int numOfNotes = 0)
     return numOfNotes;
 }
 
+void Chord::playThroughAllKeys()
+{
+    int lowestNote = 21;
+    int highestNote = 108;
+    std::vector<int> keyboardRange;
+    int currentNote = 21;
+    std::cout << "Note played: ";
+    while (currentNote <= 108)
+    {
+        makeSound(currentNote);
+        ++currentNote;
+        std::cout << "CC" << currentNote << "-";
+    }
+    std::cout << std::endl;
+}
+
+//=======================================================================
+
 struct Keys
 {
     bool keyDepressed = false;
@@ -443,6 +467,7 @@ struct Keys
     bool playGlide(float glideValue);
     void playChords(Keys keys);
     bool playMonophonic(bool monophonicSynth);
+    int velocityLimiter(int noteVelocity);
 };
 
 Keys::Keys()
@@ -470,6 +495,27 @@ bool Keys::playMonophonic(bool monophonicKeys = true)
     return monophonicKeys;
 }
 
+int Keys::velocityLimiter(int noteVelocity)
+{
+    // take in note velocity
+    // if velocity exceeds limit then velocity = velocityLimitHigh, else = velocity limit low
+    int velocityLimitLow = 26;
+    int velocityLimitHigh = 100;
+    if (noteVelocity < velocityLimitLow)
+    {
+        std::cout << "Note velocity is lower than velocity limiter. Velocity constrained to " << velocityLimitLow;
+        return velocityLimitLow;
+    }
+    else if(noteVelocity > velocityLimitHigh)
+    {
+        std::cout << "Note velocity greater than velocity limiter. Velocity constrained to " << velocityLimitHigh;
+        return velocityLimitHigh;
+    }
+    return noteVelocity;
+}
+
+//=======================================================================
+
 struct Oscillator
 {
     int oscillatorPitch;
@@ -484,6 +530,7 @@ struct Oscillator
     void makeOscillatorAnLFO(int oscillatorFrequency);
     int makeOscillatorSquareWave(int oscillatorWave);
     void getPhaseIndex();
+    
 };
 
 Oscillator::Oscillator()
@@ -507,6 +554,8 @@ int Oscillator::makeOscillatorSquareWave(int oscillatorWave)
     int squareWave = 2;
     return oscillatorWave + squareWave;
 }
+
+//=======================================================================
 
 struct Filter
 {
@@ -543,6 +592,8 @@ int Filter::getAutomationFromHost(int parameterNumber)
 {
     return parameterNumber;
 }
+
+//=======================================================================
 
 struct AmplitudeEnvelope
 {
@@ -585,6 +636,8 @@ int AmplitudeEnvelope::changeDryWetMix(int wetValue)
     return dryValue - wetValue;
 }
 
+//=======================================================================
+
 struct Arpeggiator
 {
     int octaveSetting = 0;
@@ -624,6 +677,8 @@ int Arpeggiator::playNoteDuration(int noteDuration)
     std::cout << "Note duration selected: " << noteDuration << std::endl;
     return noteDuration;
 }
+
+//=======================================================================
 
 struct Synthesiser
 {
@@ -681,19 +736,24 @@ Filter Synthesiser::applyFilterToSound(double cutoff)
 #include <iostream>
 int main()
 {
-    HighRise highRise;
 
     // 3) Instantiating UDTs
     Dragon d;
+
     HighRise badgerClose;
+    HighRise highRise;
+    SPACE
     HighRise::Lift lift;
+
 
     Brain einstein;
     einstein.recogniseFace(true, 5);
-
+    SPACE
     Brain::Vision wanda;
     Chord fSharp;
     Keys keys;
+    keys.velocityLimiter(120);
+    SPACE
     Oscillator osc;
     Filter filter;
     AmplitudeEnvelope ampEnv;
@@ -703,29 +763,32 @@ int main()
     Dragon dragon;
     dragon.breathFire(8, "Smaug");
     dragon.spellBirthplace("Hull");
+    SPACE
 
     Chord chord;
     std::cout << "Make Sound: " << chord.makeSound(67) << std::endl;
+    chord.playThroughAllKeys();
+    SPACE
 
     HighRise resident;
     std::cout << "Pay your invoice!: " << resident.printInvoiceResident(1235) << std::endl;
     std::cout << "Lifts: " << resident.lifts << std::endl;
+    SPACE
 
     HighRise::Lift lift2;
     std::cout << "Resident roomNumber: " << lift2.roomNumber << std::endl;
     lift2.moveLift(5);
     lift2.visitEveryFloor(34);
+    SPACE
 
     Brain person;
     person.estimateDistance(678);
     person.findFaceInMemory();
+    SPACE
 
     Brain::Vision vision;
-    //vision.visionTest();
     vision.issueDriversLicense();
-
-
-
+    SPACE
 
     std::cout << "good to go!" << std::endl;
 }
