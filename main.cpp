@@ -29,6 +29,7 @@ Create a branch named Part5
 #include <iostream>
 #include <vector>
 #include <random>
+#include <map>
 
 // create SPACE macro for main to separate calls to functions
 #define SPACE std::cout << std::endl;
@@ -369,7 +370,7 @@ void Brain::Vision::visionTest()
 
     std::uniform_int_distribution<unsigned> answer(0, 1);
     std::default_random_engine e;
-    std::cout << "RANDOM DATA - TEST RESULT: ";
+    std::cout << "RANDOM ANSWER DATA: ";
     for (size_t i = 0; i < numQuestions; ++i)
     {
         answer(e);
@@ -381,7 +382,7 @@ void Brain::Vision::visionTest()
        }
         std::cout << result << " ";
     }
-    std::cout << "\n" <<(count > 20 ? "PASS" : "FAIL") << std::endl;
+    std::cout << "\n" <<(count > 20 ? "EYESIGHT TEST PASSED" : "EYESIGHT TEST FAILED") << std::endl;
 
 }
 void Brain::Vision::issueDriversLicense()
@@ -714,6 +715,7 @@ struct Arpeggiator
     bool bypassArp(bool arpState);
     int playHeldNotes(int noteMidiNumbers);
     int playNoteDuration(int noteDuration);
+    void userSelectedNoteDuration(double noteDuration);
 };
 
 Arpeggiator::Arpeggiator()
@@ -738,6 +740,51 @@ int Arpeggiator::playNoteDuration(int noteDuration)
 {
     std::cout << "Note duration selected: " << noteDuration << std::endl;
     return noteDuration;
+}
+
+void Arpeggiator::userSelectedNoteDuration(double noteDuration)
+{
+    std::map<double, std::string> noteLengths;
+    {
+        noteLengths[4.0] = "semibreve",
+        noteLengths[2.0] = "minim",
+        noteLengths[1.0] = "crotchet",
+        noteLengths[0.5] = "quaver",
+        noteLengths[0.25] = "semiquaver";
+    }
+    std::vector<double> noteLengthVector = {4.0, 2.0, 1.0, 0.5, 0.25};
+    for (auto c : noteLengthVector)
+    {
+/*        // TODO continue until list is exhausted and move to error or the number is correct
+        if(noteDuration != c)
+        {
+            std::cout << "ERROR! Note duration not available" << std::endl;
+            break;
+        }
+        else
+        {
+            std::cout << noteLengths[noteDuration] << " selected";
+            std::cout << std::endl;
+            std::cout << "One bar = ";
+        }*/
+        if(c == 4.0)
+        {
+
+        }
+        else if(c == 2.0)
+        {
+
+        }
+        else if(c == 1.0)
+        {
+
+        }
+        else if(c == 0.5)
+    }
+    // output choice as text for user
+
+
+    // TODO If the noteDuration = n then spell beats per bar as string i.e. "1-2-3-4"
 }
 
 //=======================================================================
@@ -826,6 +873,9 @@ int main()
     ampEnv.emergencyVolumeLimiter();
     SPACE
     Arpeggiator arp;
+    arp.userSelectedNoteDuration(0.25);
+    SPACE
+
     Synthesiser synth;
     SPACE
 
