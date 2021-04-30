@@ -744,14 +744,15 @@ int Arpeggiator::playNoteDuration(int noteDuration)
 
 void Arpeggiator::userSelectedNoteDuration(double noteDuration)
 {
-    std::map<double, std::string> noteLengths;
-    {
-        noteLengths[4.0] = "semibreve",
-        noteLengths[2.0] = "minim",
-        noteLengths[1.0] = "crotchet",
-        noteLengths[0.5] = "quaver",
-        noteLengths[0.25] = "semiquaver";
-    }
+    std::map<double, std::string> noteLengths
+            {
+                    {4.0, "semibreve"},
+                    {2.0, "minim"},
+                    {1.0, "crotchet"},
+                    {0.5, "quaver"},
+                    {0.25, "semiquaver"}
+            };
+
     std::vector<double> noteLengthVector = {4.0, 2.0, 1.0, 0.5, 0.25};
     std::cout << "Chose from the following note durations: ";
     for (auto c : noteLengthVector)
@@ -801,6 +802,7 @@ struct Synthesiser
     Keys playANote(Keys notes);
     Arpeggiator playRepeatingNotes(Arpeggiator notesPlayed);
     Filter applyFilterToSound(double cutoff);
+    void chordTypeSelector(std::string mode);
 };
 
 Synthesiser::Synthesiser()
@@ -826,6 +828,25 @@ Filter Synthesiser::applyFilterToSound(double cutoff)
 
     return cutoffValue;
 }
+
+void Synthesiser::chordTypeSelector(std::string mode)
+{
+    std::map<std::string, std::vector<int> > chordType
+    {
+        {"major", {0, 4, 7}},
+        {"minor", {0, 3, 7}},
+        {"diminished", {0, 3, 6}},
+        {"augmented", {0, 4, 8}}
+    };
+
+    std::cout << "You have selected the " << mode << " mode, which contains pitch classes: ";
+    for (int i = 0; i < 3; ++i)
+    {
+        std::cout << chordType[mode][i] << " ";
+    }
+    std::cout << std::endl;
+}
+
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
@@ -876,6 +897,7 @@ int main()
     SPACE
 
     Synthesiser synth;
+    synth.chordTypeSelector("augmented");
     SPACE
 
     Dragon dragon;
