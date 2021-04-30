@@ -117,11 +117,10 @@ void Dragon::spellBirthplace(std::string placeOfBirth)
 {
     std::cout << "Is this how you spell your place of birth Mr. Dragon, sir? ";
 
-    for(auto &c : placeOfBirth)
+    for(auto c : placeOfBirth)
     {
-        c = std::toupper(c);
+        std::cout << c << "-";
     }
-    std::cout << placeOfBirth << std::endl;
 }
 //===================================================================
 
@@ -305,10 +304,10 @@ bool Brain::constructLanguage(int age)
 
 int Brain::findFaceInMemory()
 {
-    std::vector<int> storageSpace;
+    std::vector<unsigned> storageSpace;
     const int faceLocationInMemory = 900;
 
-    for(int val = 0; val <= 1000000; ++val)
+    for(unsigned val = 0; val <= 1000000; ++val)
     {
         storageSpace.push_back(val);
         if (storageSpace[val] >= faceLocationInMemory)
@@ -513,7 +512,7 @@ int Keys::velocityLimiter(int keyVelocity)
 struct Oscillator
 {
     int oscillatorPitch;
-    unsigned int oscillatorOctave = 16;
+    unsigned oscillatorOctave = 16;
     int oscillatorLevel = -6;
     std::string oscillatorPitchSource = "Keyboard";
     std::string oscillatorWaveform = "pulse";
@@ -611,7 +610,6 @@ int Filter::getAutomationFromHost(int parameterNumber)
 int Filter::findHpStopBand(int hpCutoff)
 {
     int humanHearingRangeHigh = 20000;
-    int passBand = 0;
     int stopBand = 0;
 
     for (int frequency = 20; frequency <= humanHearingRangeHigh; ++frequency)
@@ -672,10 +670,10 @@ int AmplitudeEnvelope::changeDryWetMix(int wetValue)
 
 void AmplitudeEnvelope::emergencyVolumeLimiter()
 {
-    static std::vector<double> buffer;
+    std::vector<double> buffer;
 
     static std::default_random_engine engine;
-    std::uniform_int_distribution<unsigned> distribution(0, 2);
+    static std::uniform_int_distribution<unsigned> distribution(0, 2);
 
 
     for(size_t i = 0; i < 20; ++i)
@@ -780,7 +778,6 @@ void Arpeggiator::userSelectedNoteDuration(double noteDuration)
         {
             std::cout << "ERROR! Note duration not available" << std::endl;
         }
-        std::cout << std::endl;
     }
 }
 
@@ -837,7 +834,7 @@ void Synthesiser::chordTypeSelector(std::string mode)
             };
 
     std::cout << "You have selected the " << mode << " mode, which contains pitch classes: ";
-    for (int i = 0; i < 3; ++i)
+    for (unsigned i = 0; i < 3; ++i)
     {
         std::cout << chordType[mode][i] << " ";
     }
