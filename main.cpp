@@ -753,38 +753,37 @@ void Arpeggiator::userSelectedNoteDuration(double noteDuration)
         noteLengths[0.25] = "semiquaver";
     }
     std::vector<double> noteLengthVector = {4.0, 2.0, 1.0, 0.5, 0.25};
+    std::cout << "Chose from the following note durations: ";
     for (auto c : noteLengthVector)
+        std::cout << c << ", ";
+
+    std::cout << std::endl;
     {
-/*        // TODO continue until list is exhausted and move to error or the number is correct
-        if(noteDuration != c)
+        if(noteDuration == 4.0)
         {
-            std::cout << "ERROR! Note duration not available" << std::endl;
-            break;
+            std::cout << noteLengths[4.0] << " beats per 4-4 bar = 1";
+        }
+        else if(noteDuration == 2.0)
+        {
+            std::cout << noteLengths[2.0] << " beats per 4-4 bar = 2";
+        }
+        else if(noteDuration == 1.0)
+        {
+            std::cout << noteLengths[1.0] << " beats per 4-4 bar = 4";
+        }
+        else if(noteDuration == 0.5)
+        {
+            std::cout << noteLengths[0.5] << " beats per 4-4 bar = 8";
+        }
+        else if(noteDuration == 0.25)
+        {
+            std::cout << noteLengths[0.25] << " beats per 4-4 bar = 16";
         }
         else
         {
-            std::cout << noteLengths[noteDuration] << " selected";
-            std::cout << std::endl;
-            std::cout << "One bar = ";
-        }*/
-        if(c == 4.0)
-        {
-
+            std::cout << "ERROR! Note duration not available" << std::endl;
         }
-        else if(c == 2.0)
-        {
-
-        }
-        else if(c == 1.0)
-        {
-
-        }
-        else if(c == 0.5)
     }
-    // output choice as text for user
-
-
-    // TODO If the noteDuration = n then spell beats per bar as string i.e. "1-2-3-4"
 }
 
 //=======================================================================
