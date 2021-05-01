@@ -551,10 +551,10 @@ int Oscillator::makeOscillatorSquareWave(int oscillatorWave)
 
 std::vector<int> Oscillator::populateWaveWithData()
 {
-    int container[10] = {0, 3, 7, 7, 10, 4, 5, 6, 3, 8};
+    std::vector<int> container {0, 3, 7, 7, 10, 4, 5, 6, 3, 8};
     std::vector<int> waveFormSamples;
 
-    for (int sample = 0; sample < 10; ++sample)
+    for (unsigned sample = 0; sample < 10; ++sample)
     {
         waveFormSamples.push_back(container[sample]);
     }
@@ -682,14 +682,14 @@ void AmplitudeEnvelope::emergencyVolumeLimiter()
     }
 
     std::cout << "Buffer sample value: ";
-    for (auto c : buffer)
+    for (unsigned i = 0; i < buffer.size(); ++i)
     {
-        if (c > 1)
+        if (buffer[i] > 1)
         {
             //std::cout <<"WARNING! AMPLITUDE HAS EXCEED THRESHOLD: ";
-            c = 1;
+            buffer[i] = 1;
         }
-        std:: cout << c << " ";
+        std:: cout << buffer[i] << " ";
     }
 }
 
@@ -739,45 +739,45 @@ int Arpeggiator::playNoteDuration(int noteDuration)
 void Arpeggiator::userSelectedNoteDuration(double noteDuration)
 {
     std::map<double, std::string> noteLengths
-            {
-                    {4.0, "semibreve"},
-                    {2.0, "minim"},
-                    {1.0, "crotchet"},
-                    {0.5, "quaver"},
-                    {0.25, "semiquaver"}
-            };
+    {
+        {4.0, "semibreve"},
+        {2.0, "minim"},
+        {1.0, "crotchet"},
+        {0.5, "quaver"},
+        {0.25, "semiquaver"}
+    };
 
     std::vector<double> noteLengthVector = {4.0, 2.0, 1.0, 0.5, 0.25};
     std::cout << "Chose from the following note durations: ";
+
     for (auto c : noteLengthVector)
         std::cout << c << ", ";
 
     std::cout << std::endl;
+
+    if(noteDuration == 4.0)
     {
-        if(noteDuration == 4.0)
-        {
-            std::cout << noteLengths[4.0] << " beats per 4-4 bar = 1";
-        }
-        else if(noteDuration == 2.0)
-        {
-            std::cout << noteLengths[2.0] << " beats per 4-4 bar = 2";
-        }
-        else if(noteDuration == 1.0)
-        {
-            std::cout << noteLengths[1.0] << " beats per 4-4 bar = 4";
-        }
-        else if(noteDuration == 0.5)
-        {
-            std::cout << noteLengths[0.5] << " beats per 4-4 bar = 8";
-        }
-        else if(noteDuration == 0.25)
-        {
-            std::cout << noteLengths[0.25] << " beats per 4-4 bar = 16";
-        }
-        else
-        {
-            std::cout << "ERROR! Note duration not available" << std::endl;
-        }
+        std::cout << noteLengths[4.0] << " beats per 4-4 bar = 1";
+    }
+    else if(noteDuration == 2.0)
+    {
+        std::cout << noteLengths[2.0] << " beats per 4-4 bar = 2";
+    }
+    else if(noteDuration == 1.0)
+    {
+        std::cout << noteLengths[1.0] << " beats per 4-4 bar = 4";
+    }
+    else if(noteDuration == 0.5)
+    {
+        std::cout << noteLengths[0.5] << " beats per 4-4 bar = 8";
+    }
+    else if(noteDuration == 0.25)
+    {
+        std::cout << noteLengths[0.25] << " beats per 4-4 bar = 16";
+    }
+    else
+    {
+        std::cout << "ERROR! Note duration not available" << std::endl;
     }
 }
 
@@ -826,12 +826,12 @@ Filter Synthesiser::applyFilterToSound(double cutoff)
 void Synthesiser::chordTypeSelector(std::string mode)
 {
     std::map<std::string, std::vector<int> > chordType
-            {
-                    {"major", {0, 4, 7}},
-                    {"minor", {0, 3, 7}},
-                    {"diminished", {0, 3, 6}},
-                    {"augmented", {0, 4, 8}}
-            };
+    {
+        {"major", {0, 4, 7}},
+        {"minor", {0, 3, 7}},
+        {"diminished", {0, 3, 6}},
+        {"augmented", {0, 4, 8}}
+    };
 
     std::cout << "You have selected the " << mode << " mode, which contains pitch classes: ";
     for (unsigned i = 0; i < 3; ++i)
