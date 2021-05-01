@@ -31,41 +31,38 @@ Create a branch named Part5
 #include <random>
 #include <map>
 
-// create SPACE macro for main to separate calls to functions
-#define SPACE std::cout << std::endl;
-
-namespace Example 
+namespace Example
 {
-struct Bar 
-{ 
-    int num = 0; 
-    Bar(int n) : num(n) { } 
-};
-struct Foo
-{
-    Bar scopeLifetimeFunc( int threshold, int startingVal ) //3), 4c) 
+    struct Bar
     {
-        Bar bar(startingVal);                //4a)
-        while( bar.num < threshold )         //4a) 
-        { 
-            bar.num += 1;                    //4a)
-            
-            if( bar.num >= threshold )       //4b)
-                return bar;
-        }
-        
-        return Bar {-1}; //if your startingValue >= threshold, the while loop never runs
-    }
-};
+        int num = 0;
+        Bar(int n) : num(n) { }
+    };
+    struct Foo
+    {
+        Bar scopeLifetimeFunc( int threshold, int startingVal ) //3), 4c)
+        {
+            Bar bar(startingVal);                //4a)
+            while( bar.num < threshold )         //4a)
+            {
+                bar.num += 1;                    //4a)
 
-int main()
-{
-    Foo foo;
-    auto bar = foo.scopeLifetimeFunc(3, 1);        //5) 
-    
-    std::cout << "bar.num: " << bar.num << std::endl;     //6) 
-    return 0;
-}
+                if( bar.num >= threshold )       //4b)
+                    return bar;
+            }
+
+            return Bar {-1}; //if your startingValue >= threshold, the while loop never runs
+        }
+    };
+
+    int main()
+    {
+        Foo foo;
+        auto bar = foo.scopeLifetimeFunc(3, 1);        //5)
+
+        std::cout << "bar.num: " << bar.num << std::endl;     //6)
+        return 0;
+    }
 }
 
 //call Example::main() in main()
@@ -94,8 +91,8 @@ struct Dragon
 };
 
 Dragon::Dragon()
-    : firePower(350),
-      age(500)
+        : firePower(350),
+          age(500)
 {
 }
 
@@ -118,14 +115,12 @@ bool Dragon::fightKnight(int courageOfKnight)
 
 void Dragon::spellBirthplace(std::string placeOfBirth)
 {
-    //int value = 0;
     std::cout << "Is this how you spell your place of birth Mr. Dragon, sir? ";
 
-    for(auto &c : placeOfBirth)
+    for(auto c : placeOfBirth)
     {
-        c = std::toupper(c);
+        std::cout << c << "-";
     }
-    std::cout << placeOfBirth << std::endl;
 }
 //===================================================================
 
@@ -141,7 +136,7 @@ struct HighRise
 
         Lift();
 
-        int moveLift(int floorNumber); // moveLiftUp() and moveLiftDown() consolidated into moveLift()
+        int moveLift(int floorNumber);
         std::string goToPenthouse(std::string password);
         void visitEveryFloor(int startingFloorNumber);
     };
@@ -160,7 +155,7 @@ struct HighRise
 };
 
 HighRise::HighRise()
-    : costOfProperty(450005.09f)
+        : costOfProperty(450005.09f)
 {
 }
 
@@ -193,12 +188,12 @@ int HighRise::transportResident(int desiredFloor, int currentFloor)
 }
 
 HighRise::Lift::Lift()
-    : manufacturerName("Cibes"),
-      liftSpeedMph(8.5f),
-      floorNumber(4),
-      roomNumber(570),
-      numberPassengers(5)
-{;
+        : manufacturerName("Cibes"),
+          liftSpeedMph(8.5f),
+          floorNumber(4),
+          roomNumber(570),
+          numberPassengers(5)
+{
 }
 
 int HighRise::Lift::moveLift(int floorNum)
@@ -261,7 +256,7 @@ struct Brain
         void probabilityOfSighting(bool morning);
         void getGlassesPrescription();
         void visionTest();
-        void issueDriversLicense(); // add random values
+        void issueDriversLicense();
     };
 
     double numNeurons;
@@ -279,7 +274,7 @@ struct Brain
 };
 
 Brain::Brain()
-    : numNeurons(10e13)
+        : numNeurons(10e13)
 
 {
 }
@@ -309,10 +304,10 @@ bool Brain::constructLanguage(int age)
 
 int Brain::findFaceInMemory()
 {
-    int val = 1;
-    std::vector<int> storageSpace; // need empty vector to populate
-    int faceLocationInMemory = 900;
-    for(int val = 0; val <= 1000000; ++val)
+    std::vector<unsigned> storageSpace;
+    const int faceLocationInMemory = 900;
+
+    for(unsigned val = 0; val <= 1000000; ++val)
     {
         storageSpace.push_back(val);
         if (storageSpace[val] >= faceLocationInMemory)
@@ -328,9 +323,9 @@ int Brain::findFaceInMemory()
 }
 
 Brain::Vision::Vision()
-    : numberOfFunctioningEyes(2),
-      visionQuality(65.5),
-      blinksPerSecond(10.0f)
+        : numberOfFunctioningEyes(2),
+          visionQuality(65.5),
+          blinksPerSecond(10.0f)
 {
 }
 
@@ -375,11 +370,11 @@ void Brain::Vision::visionTest()
     {
         answer(e);
         result = answer(e);
-       //std::cout << result << " ";
-       if (result)
-       {
-           ++count;
-       }
+        //std::cout << result << " ";
+        if (result)
+        {
+            ++count;
+        }
         std::cout << result << " ";
     }
     std::cout << "\n" <<(count > 20 ? "EYESIGHT TEST PASSED" : "EYESIGHT TEST FAILED") << std::endl;
@@ -409,7 +404,7 @@ struct Chord
 };
 
 Chord::Chord()
-    : precedingChordList("C#m, D#m")
+        : precedingChordList("C#m, D#m")
 {
 }
 
@@ -439,11 +434,10 @@ int Chord::playNothing(int numOfNotes = 0)
 
 void Chord::playThroughAllKeys()
 {
-    int lowestNote = 21;
-    int highestNote = 108;
     std::vector<int> keyboardRange;
     int currentNote = 21;
     std::cout << "Note played: ";
+
     while (currentNote <= 108)
     {
         makeSound(currentNote);
@@ -496,23 +490,21 @@ bool Keys::playMonophonic(bool monophonicKeys = true)
     return monophonicKeys;
 }
 
-int Keys::velocityLimiter(int noteVelocity)
+int Keys::velocityLimiter(int keyVelocity)
 {
-    // take in note velocity
-    // if velocity exceeds limit then velocity = velocityLimitHigh, else = velocity limit low
-    int velocityLimitLow = 26;
-    int velocityLimitHigh = 100;
-    if (noteVelocity < velocityLimitLow)
+    const int velocityLimitLow = 26;
+    const int velocityLimitHigh = 100;
+    if (keyVelocity < velocityLimitLow)
     {
         std::cout << "Note velocity is lower than velocity limiter. Velocity constrained to " << velocityLimitLow;
         return velocityLimitLow;
     }
-    else if(noteVelocity > velocityLimitHigh)
+    else if(keyVelocity > velocityLimitHigh)
     {
         std::cout << "Note velocity greater than velocity limiter. Velocity constrained to " << velocityLimitHigh;
         return velocityLimitHigh;
     }
-    return noteVelocity;
+    return keyVelocity;
 }
 
 //=======================================================================
@@ -520,7 +512,7 @@ int Keys::velocityLimiter(int noteVelocity)
 struct Oscillator
 {
     int oscillatorPitch;
-    unsigned int oscillatorOctave = 16;
+    unsigned oscillatorOctave = 16;
     int oscillatorLevel = -6;
     std::string oscillatorPitchSource = "Keyboard";
     std::string oscillatorWaveform = "pulse";
@@ -561,11 +553,14 @@ std::vector<int> Oscillator::populateWaveWithData()
 {
     int container[10] = {0, 3, 7, 7, 10, 4, 5, 6, 3, 8};
     std::vector<int> waveFormSamples;
+
     for (int sample = 0; sample < 10; ++sample)
     {
         waveFormSamples.push_back(container[sample]);
     }
+
     std::cout << "Sample values for wave: ";
+
     for(auto c : waveFormSamples)
     {
         std::cout << c << " ";
@@ -615,8 +610,7 @@ int Filter::getAutomationFromHost(int parameterNumber)
 int Filter::findHpStopBand(int hpCutoff)
 {
     int humanHearingRangeHigh = 20000;
-    int passBand;
-    int stopBand;
+    int stopBand = 0;
 
     for (int frequency = 20; frequency <= humanHearingRangeHigh; ++frequency)
     {
@@ -649,11 +643,11 @@ struct AmplitudeEnvelope
 };
 
 AmplitudeEnvelope::AmplitudeEnvelope()
-    : attack(34),
-      decay (45),
-      sustain(100),
-      release(20),
-      hold(0)
+        : attack(34),
+          decay (45),
+          sustain(100),
+          release(20),
+          hold(0)
 {
 }
 
@@ -676,10 +670,10 @@ int AmplitudeEnvelope::changeDryWetMix(int wetValue)
 
 void AmplitudeEnvelope::emergencyVolumeLimiter()
 {
-    static std::vector<double> buffer;
+    std::vector<double> buffer;
 
     static std::default_random_engine engine;
-    std::uniform_int_distribution<unsigned> distribution(0, 2);
+    static std::uniform_int_distribution<unsigned> distribution(0, 2);
 
 
     for(size_t i = 0; i < 20; ++i)
@@ -832,15 +826,15 @@ Filter Synthesiser::applyFilterToSound(double cutoff)
 void Synthesiser::chordTypeSelector(std::string mode)
 {
     std::map<std::string, std::vector<int> > chordType
-    {
-        {"major", {0, 4, 7}},
-        {"minor", {0, 3, 7}},
-        {"diminished", {0, 3, 6}},
-        {"augmented", {0, 4, 8}}
-    };
+            {
+                    {"major", {0, 4, 7}},
+                    {"minor", {0, 3, 7}},
+                    {"diminished", {0, 3, 6}},
+                    {"augmented", {0, 4, 8}}
+            };
 
     std::cout << "You have selected the " << mode << " mode, which contains pitch classes: ";
-    for (int i = 0; i < 3; ++i)
+    for (unsigned i = 0; i < 3; ++i)
     {
         std::cout << chordType[mode][i] << " ";
     }
@@ -871,64 +865,66 @@ int main()
 
     HighRise badgerClose;
     HighRise highRise;
-    SPACE
+
     HighRise::Lift lift;
 
 
     Brain einstein;
     einstein.recogniseFace(true, 5);
-    SPACE
+
+
     Brain::Vision wanda;
     Chord fSharp;
     Keys keys;
     keys.velocityLimiter(120);
-    SPACE
+
+
     Oscillator osc;
     osc.populateWaveWithData();
-    SPACE
+
     Filter filter;
     filter.findHpStopBand(7600);
-    SPACE
+
     AmplitudeEnvelope ampEnv;
     ampEnv.emergencyVolumeLimiter();
-    SPACE
+
     Arpeggiator arp;
     arp.userSelectedNoteDuration(0.25);
-    SPACE
+
 
     Synthesiser synth;
     synth.chordTypeSelector("augmented");
-    SPACE
+
 
     Dragon dragon;
     dragon.breathFire(8, "Smaug");
     dragon.spellBirthplace("Hull");
-    SPACE
+
 
     Chord chord;
     std::cout << "Make Sound: " << chord.makeSound(67) << std::endl;
     chord.playThroughAllKeys();
-    SPACE
+
 
     HighRise resident;
     std::cout << "Pay your invoice!: " << resident.printInvoiceResident(1235) << std::endl;
     std::cout << "Lifts: " << resident.lifts << std::endl;
-    SPACE
+
 
     HighRise::Lift lift2;
     std::cout << "Resident roomNumber: " << lift2.roomNumber << std::endl;
     lift2.moveLift(5);
     lift2.visitEveryFloor(34);
-    SPACE
+
 
     Brain person;
     person.estimateDistance(678);
     person.findFaceInMemory();
-    SPACE
+
 
     Brain::Vision vision;
     vision.issueDriversLicense();
-    SPACE
+
 
     std::cout << "good to go!" << std::endl;
 }
